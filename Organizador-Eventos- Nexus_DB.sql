@@ -1,67 +1,93 @@
-drop database if exists organizadoreventosnexus_db;
-create database organizadoreventosnexus_db;
-use organizadoreventosnexus_db;
+drop database if exists organizador_eventos_db;
+create database organizador_eventos_db;
+use organizador_eventos_db;
 
-create table Usuario (
-    idUsuario int auto_increment,
-    nombre varchar(50) not null,
-    apellido varchar(50) not null,
-    correo varchar(100) unique not null,
-    contrasena varchar(100) not null,
-    rol enum('administrador','organizador','invitado') not null,
-    constraint pk_usuario primary key (idUsuario)
+create table RegLog (
+	id  int auto_increment,
+    nombre varchar(100) not null,
+    email varchar(100) not null unique,
+    password varchar(255) not null,
+    rol VARCHAR(20) not null default 'Usuario',
+    constraint pk_RegLog primary key (id)
 );
 
-create table Evento (
-    idEvento int auto_increment,
-    nombreEvento varchar(100) not null,
-    descripcion text,
-    fecha date not null,
-    lugar varchar(100) not null,
-    idUsuario int not null,
-    constraint pk_evento primary key (idEvento),
-    constraint fk_evento_usuario foreign key (idUsuario) references Usuario(idUsuario)
+create table Usuarios (
+	idUsuario int auto_increment,
+	nombre varchar(100) not null,
+	apellido varchar(128) not null,
+	email varchar(100) not null unique,
+	password varchar(255) not null,
+	rol enum('cliente','administrador') default 'cliente',
+	constraint pk_usuarios primary key (idUsuario)
 );
 
-create table Invitado (
-    idInvitado int auto_increment,
-    nombre varchar(50) not null,
-    apellido varchar(50) not null,
-    correo varchar(100),
-    telefono varchar(20),
-    estadoAsistencia enum('pendiente','confirmado','rechazado') default 'pendiente',
-    idEvento int not null,
-    constraint pk_invitado primary key (idInvitado),
-    constraint fk_invitado_evento foreign key (idEvento) references Evento(idEvento)
+create table Recursos (
+	idRecurso int auto_increment,
+	nombreRecurso varchar(128) not null,
+	categoria enum('Mobiliario','Cubiertas y estructuras','Iluminación','Sonido y multimedia','Decoración','Cocina y catering','Entretenimiento','otro') default 'otro',
+	stock int not null,
+	precioAlquiler decimal(10,2) not null,
+	constraint pk_recursos primary key (idRecurso)
 );
 
-create table Tarea (
-    idTarea int auto_increment,
-    descripcion text not null,
-    estado enum('pendiente','en progreso','completada') default 'pendiente',
-    fechaLimite date,
-    idEvento int not null,
-    idUsuario int,
-    constraint pk_tarea primary key (idTarea),
-    constraint fk_tarea_evento foreign key (idEvento) references Evento(idEvento),
-    constraint fk_tarea_usuario foreign key (idUsuario) references Usuario(idUsuario)
+create table Proveedores (
+	idProveedor int auto_increment,
+	nombreProveedor varchar(128) not null,
+	servicio varchar(128) not null,
+	contacto varchar(128),
+	constraint pk_proveedores primary key (idProveedor)
 );
 
-create table Actividad (
-    idActividad int auto_increment,
-    nombreActividad varchar(100) not null,
-    horaInicio time not null,
-    horaFin time not null,
-    idEvento int not null,
-    constraint pk_actividad primary key (idActividad),
-    constraint fk_actividad_evento foreign key (idEvento) references Evento(idEvento)
+create table Eventos (
+	idEvento int auto_increment,
+	nombreEvento varchar(100) not null,
+	descripcion varchar(255) not null,
+	fecha date not null,
+	lugar varchar(100) not null,
+	estado enum('pendiente','en progreso','completada') default 'pendiente',
+	duracion time not null,
+	tipoEvento enum('social','corporativo','cultural','recreativo','otro') default 'otro',
+	costoEvento decimal(10, 2) not null,
+	idUsuario int not null,
+	constraint pk_eventos primary key (idEvento),
+	constraint fk_eventos_usuarios foreign key (idUsuario)
+		references Usuarios(idUsuario)
 );
 
-create table Recurso (
-    idRecurso int auto_increment,
-    tipoRecurso varchar(50) not null,
-    descripcion text,
-    idEvento int not null,
-    constraint pk_recurso primary key (idRecurso),
-    constraint fk_recurso_evento foreign key (idEvento) references Evento(idEvento)
+create table Invitados (
+	idInvitado int auto_increment,
+	nombre varchar(50) not null,
+	apellido varchar(50) not null,
+	correo varchar(100),
+	telefono varchar(20),
+	estadoAsistencia enum('pendiente','confirmado','rechazado') default 'pendiente',
+	idEvento int not null,
+	constraint pk_invitados primary key (idInvitado),
+	constraint fk_invitados_eventos foreign key (idEvento)
+		references Eventos(idEvento)
+	);
+
+create table DetalleRecursos (
+	idDetalleRecurso int auto_increment,
+	idEvento int not null,
+	idRecurso int not null,
+	cantidad int not null,
+	constraint pk_detalle_recursos primary key (idDetalleRecurso),
+	constraint fk_detalle_recursos_eventos foreign key (idEvento)
+		references Eventos(idEvento),
+	constraint fk_detalle_recursos_recursos foreign key (idRecurso)
+		references Recursos(idRecurso)
+);
+
+create table DetalleProveedores (
+	idDetalleProveedor int auto_increment,
+	idEvento int not null,
+	idProveedor int not null,
+	costo decimal(10,2),
+	observaciones varchar(255),
+	constraint pk_detalle_proveedores primary key (idDetalleProveedor),
+	constraint fk_detalle_proveedores_eventos foreign key (idEvento)
+		references Eventos(idEvento),
+	constraint fk_detalle_proveedores_proveedores foreign key (idProveedor)
+		references Proveedores(idProveedor)
 );
