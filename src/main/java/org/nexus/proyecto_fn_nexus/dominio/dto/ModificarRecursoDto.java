@@ -6,12 +6,16 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public record ModificarRecursoDto (
+        @NotNull(message = "El titulo nuevo no puede estar vacio")
+        String resourceName,
+
         @NotNull(message = "El stock no puede ser nulo")
         @Min(value = 0, message = "El stock no puede ser menor a 0")
         Integer stock,
+
         @NotNull(message = "El precio de alquiler no puede ser nulo")
         @DecimalMin(value = "0.0", message = "El precio de alquiler no puede ser negativo")
-        BigDecimal precioAlquiler
+        BigDecimal rentalPrice
 
 ){
 }

@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface RecursoRepository {
     List<RecursoDto> obtenerTodo();
-    RecursoDto buscarPorId(Long id);
+    RecursoDto buscarPorId(Integer idRecurso);
     RecursoDto guardarRecurso(RecursoDto recursoDto);
-    RecursoDto modificarRecurso(Long id, ModificarRecursoDto modRecurso);
-    void eliminarRecurso(Long id);
+    RecursoDto modificarRecurso(Integer idRecurso, ModificarRecursoDto modRecurso);
+    void eliminarRecurso(Integer idRecurso);
 }

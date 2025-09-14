@@ -7,7 +7,7 @@ import org.nexus.proyecto_fn_nexus.dominio.CategoriaRecurso;
 import java.math.BigDecimal;
 
 public record RecursoDto (
-    Long id,
+    Integer idRecurso,
     @NotNull(message = "El nombre del recurso es obligatorio")
     String resourceName,
     CategoriaRecurso category,
