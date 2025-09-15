@@ -13,6 +13,9 @@ public record ModUsuarioDto(
         @NotNull(message = "El email es obligatoria")
         String email,
 
+        @NotNull (message = "La contraseña es obligatoria")
+        String password,
+
         @NotNull(message = "El rol es obligatorio y porfavor unicamente poner cliente y administrador")
         String rol
 

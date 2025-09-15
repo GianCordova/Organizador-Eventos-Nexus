@@ -5,7 +5,7 @@ import org.nexus.proyecto_fn_nexus.dominio.dto.ModUsuarioDto;
 
 import java.util.List;
 
-public interface UsuariosRepository {
+public interface UsuarioRepository {
 
     // Obtener todos los usuarios
     List<UsuarioDto> obtenerTodo();
@@ -18,6 +18,8 @@ public interface UsuariosRepository {
 
     // Modificar un usuarios existente
     UsuarioDto modificarUsuario(Long idUsuario, ModUsuarioDto modUsuario);
+
+
 
     // Eliminar un usuarios por ID
     void eliminarUsuario(Long idUsuario);
