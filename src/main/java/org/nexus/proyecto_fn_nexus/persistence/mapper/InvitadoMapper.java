@@ -6,8 +6,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.nexus.proyecto_fn_nexus.dominio.dto.InvitadoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModInvitadoDto;
-import org.nexus.proyecto_fn_nexus.persistence.entity.InvitadoEntity;
-import org.nexus.proyecto_fn_nexus.dominio.dto.ModInvitadoDto;
 
 import java.util.List;
 

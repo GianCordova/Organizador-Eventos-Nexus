@@ -6,7 +6,6 @@ import javax.annotation.processing.Generated;
 import org.nexus.proyecto_fn_nexus.dominio.EstadoAsistencia;
 import org.nexus.proyecto_fn_nexus.dominio.dto.InvitadoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModInvitadoDto;
-import org.nexus.proyecto_fn_nexus.persistence.entity.InvitadoEntity;
 import org.springframework.stereotype.Component;
 
 @Generated(
