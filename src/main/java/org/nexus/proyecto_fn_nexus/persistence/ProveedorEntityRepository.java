@@ -35,8 +35,8 @@ public class ProveedorEntityRepository implements ProveedorRepository {
 
     @Override
     public ProveedorDto guardarProveedor(ProveedorDto proveedorDto) {
-        if (this.crudProveedorEntity.findProveedorEntityByNombre(proveedorDto.nombre()) != null) {
-            throw new ProveedorYaExisteException(proveedorDto.nombre());
+        if (this.crudProveedorEntity.findProveedorEntityBynombreProveedor(proveedorDto.nombreProveedor()) != null) {
+            throw new ProveedorYaExisteException(proveedorDto.nombreProveedor());
         }
 
         ProveedorEntity proveedor = this.proveedorMapper.toEntity(proveedorDto);

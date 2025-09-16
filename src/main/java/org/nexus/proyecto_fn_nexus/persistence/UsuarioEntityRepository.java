@@ -9,7 +9,6 @@ import org.nexus.proyecto_fn_nexus.dominio.exception.EventoNoExisteException;
 import org.nexus.proyecto_fn_nexus.dominio.exception.UsuarioNoExisteException;
 import org.nexus.proyecto_fn_nexus.dominio.exception.UsuarioYaExisteException;
 import org.nexus.proyecto_fn_nexus.persistence.crud.CrudUsuarioEntity;
-import org.nexus.proyecto_fn_nexus.persistence.entity.EventoEntity;
 import org.nexus.proyecto_fn_nexus.persistence.entity.UsuarioEntity;
 import org.nexus.proyecto_fn_nexus.persistence.mapper.UsuarioMapper;
 import org.nexus.proyecto_fn_nexus.repository.UsuarioRepository;

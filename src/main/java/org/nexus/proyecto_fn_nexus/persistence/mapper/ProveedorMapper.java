@@ -13,10 +13,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProveedorMapper {
 
-    @Mapping(source = "nombre", target = "nombre")
-    @Mapping(source = "direccion", target = "direccion")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "telefono", target = "telefono")
+    @Mapping(source = "nombreProveedor", target = "nombreProveedor")
+    @Mapping(source = "servicio", target = "servicio")
+    @Mapping(source = "contacto", target = "contacto")
     ProveedorDto toDto(ProveedorEntity entity);
 
     List<ProveedorDto> toDto(Iterable<ProveedorEntity> entities);
@@ -24,10 +23,9 @@ public interface ProveedorMapper {
     @InheritInverseConfiguration
     ProveedorEntity toEntity(ProveedorDto dto);
 
-    @Mapping(source = "nombre", target = "nombre")
-    @Mapping(source = "direccion", target = "direccion")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "telefono", target = "telefono")
+    @Mapping(source = "nombreProveedor", target = "nombreProveedor")
+    @Mapping(source = "servicio", target = "servicio")
+    @Mapping(source = "contacto", target = "contacto")
     void modificarEntityFromDto(ModProveedorDto mod, @MappingTarget ProveedorEntity entity);
 
 }

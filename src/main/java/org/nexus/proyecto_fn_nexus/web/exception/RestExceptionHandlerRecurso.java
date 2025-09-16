@@ -1,7 +1,7 @@
 package org.nexus.proyecto_fn_nexus.web.exception;
 
 
-import org.nexus.proyecto_fn_nexus.dominio.exception.ErrorRecurso;
+import org.nexus.proyecto_fn_nexus.dominio.exception.Error;
 import org.nexus.proyecto_fn_nexus.dominio.exception.RecursoNoExisteException;
 import org.nexus.proyecto_fn_nexus.dominio.exception.RecursoYaExisteException;
 import org.springframework.http.HttpStatus;
@@ -16,29 +16,29 @@ import java.util.List;
 @RestControllerAdvice
 public class RestExceptionHandlerRecurso {
     @ExceptionHandler(RecursoYaExisteException.class)
-    public ResponseEntity<ErrorRecurso> handleException(RecursoYaExisteException ex){
-        ErrorRecurso errorRecurso = new ErrorRecurso("recurso ya existe", ex.getMessage());
+    public ResponseEntity<Error> handleException(RecursoYaExisteException ex){
+        Error errorRecurso = new Error("recurso ya existe", ex.getMessage());
         return ResponseEntity.badRequest().body(errorRecurso);
     }
 
     @ExceptionHandler (RecursoNoExisteException.class)
-    public ResponseEntity<ErrorRecurso> handleException(RecursoNoExisteException ex){
-        ErrorRecurso errorRecurso = new ErrorRecurso("recurso no existe", ex.getMessage());
+    public ResponseEntity<Error> handleException(RecursoNoExisteException ex){
+        Error errorRecurso = new Error("recurso no existe", ex.getMessage());
         return ResponseEntity.badRequest().body(errorRecurso);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorRecurso>> handleException(MethodArgumentNotValidException ex){
-        List<ErrorRecurso> erroresRecurso = new ArrayList<>();
+    public ResponseEntity<List<Error>> handleException(MethodArgumentNotValidException ex){
+        List<Error> erroresRecurso = new ArrayList<>();
         ex.getBindingResult().getFieldErrors().forEach((fieldError) -> {
-            erroresRecurso.add(new ErrorRecurso(fieldError.getField(), fieldError.getDefaultMessage()));
+            erroresRecurso.add(new Error(fieldError.getField(), fieldError.getDefaultMessage()));
         });
         return ResponseEntity.badRequest().body(erroresRecurso);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorRecurso> handleException(Exception ex){
-        ErrorRecurso errorRecurso = new ErrorRecurso("Error desconocido", ex.getMessage());
+    public ResponseEntity<Error> handleException(Exception ex){
+        Error errorRecurso = new Error("Error desconocido", ex.getMessage());
         return ResponseEntity.internalServerError().body(errorRecurso);
     }
 

@@ -7,15 +7,12 @@ public record ProveedorDto(
         Long idProveedor,
 
         @NotNull(message = "El nombre del proveedor no puede estar vacío")
-        String nombre,
+        String nombreProveedor,
 
         @NotNull(message = "El apellido del proveedor es obligatorio")
-        String apellido,
+        String servicio,
 
         @NotNull(message = "El email del proveedor es obligatorio")
-        String email,
-
-        @NotNull(message = "La contraseña del proveedor es obligatoria")
-        String password
+        String contacto
 
 ) {}

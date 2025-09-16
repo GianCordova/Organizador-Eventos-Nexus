@@ -15,7 +15,7 @@ create table Usuarios (
 create table Recursos (
 	idRecurso int auto_increment,
 	nombreRecurso varchar(128) not null,
-	categoria enum('Mobiliario','Cubiertas y estructuras','Iluminación','Sonido y multimedia','Decoración','Cocina y catering','Entretenimiento','otro') default 'otro',
+	categoria enum('Mobiliario','Cubiertas y estructuras','Iluminacion','Sonido y multimedia','Decoracion','Cocina y catering','Entretenimiento','otro') default 'otro',
 	stock int not null,
 	precioAlquiler decimal(10,2) not null,
 	constraint pk_recursos primary key (idRecurso)
