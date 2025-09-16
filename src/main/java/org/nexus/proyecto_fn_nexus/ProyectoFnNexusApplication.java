@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProyectoFnNexusApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProyectoFnNexusApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProyectoFnNexusApplication.class, args);
+    }
 
 }
