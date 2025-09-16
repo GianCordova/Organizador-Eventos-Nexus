@@ -1,29 +1,18 @@
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Lucía', 'Ramírez', 'lucia.ramirez@example.com', '3124567890', 'pendiente', 1);
+-- Usuarios
+INSERT IGNORE INTO Usuarios (nombre, apellido, email, password, rol)
+VALUES ('Juan', 'Pérez', 'juan.perez@email.com', 'pass123', 'cliente');
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Mateo', 'González', 'mateo.gonzalez@example.com', '3111234567', 'pendiente', 1);
+INSERT IGNORE INTO Usuarios (nombre, apellido, email, password, rol)
+VALUES ('Ana', 'Gómez', 'ana.gomez@email.com', 'pass123', 'administrador');
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Camila', 'Torres', 'camila.torres@example.com', '3109876543', 'pendiente', 1);
+INSERT IGNORE INTO Usuarios (nombre, apellido, email, password, rol)
+VALUES ('Luis', 'Ramírez', 'luis.ramirez@email.com', 'pass123', 'cliente');
+-- Eventos
+INSERT IGNORE INTO Eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario)
+VALUES ('Boda Martínez', 'Boda de ejemplo', '2025-12-20', 'Salón Principal', 'pendiente', '05:00:00', 'social', 1500.00, 1);
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Santiago', 'Martínez', 'santiago.martinez@example.com', '3132223344', 'pendiente', 1);
+INSERT IGNORE INTO Eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario)
+VALUES ('Conferencia Tech', 'Evento corporativo de tecnología', '2025-11-15', 'Auditorio Central', 'en_progreso', '03:00:00', 'corporativo', 3000.00, 2);
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Valentina', 'López', 'valentina.lopez@example.com', '3145556677', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Emilio', 'Hernández', 'emilio.hernandez@example.com', '3151112233', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Isabella', 'Mendoza', 'isabella.mendoza@example.com', '3164448899', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Diego', 'Castillo', 'diego.castillo@example.com', '3173332211', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Mariana', 'Vargas', 'mariana.vargas@example.com', '3189997766', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Gabriel', 'Ortega', 'gabriel.ortega@example.com', '3198886655', 'pendiente', 1);
+INSERT IGNORE INTO Eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario)
+VALUES ('Festival Cultural', 'Festival de danzas y música', '2025-10-05', 'Plaza Central', 'completada', '06:00:00', 'cultural', 2000.00, 3);
