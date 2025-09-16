@@ -1,29 +1,48 @@
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Lucía', 'Ramírez', 'lucia.ramirez@example.com', '3124567890', 'pendiente', 1);
+-- Usuarios
+INSERT IGNORE INTO usuarios (nombre, apellido, email, password, rol) VALUES
+('Ana', 'Gómez', 'ana.gomez@email.com', 'pass123', 'cliente'),
+('Luis', 'Pérez', 'luis.perez@email.com', 'pass123', 'administrador'),
+('Carla', 'Ramírez', 'carla.ramirez@email.com', 'pass123', 'cliente');
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Mateo', 'González', 'mateo.gonzalez@example.com', '3111234567', 'pendiente', 1);
+-- Recursos
+INSERT IGNORE INTO recursos (nombre_recurso, categoria, stock, precio_alquiler) VALUES
+('sillas_plegables', 'Mobiliario', 100, 2.50),
+('carpa_5x5', 'Cubiertas y estructuras', 10, 50.00),
+('luces_led', 'Iluminacion', 20, 15.00),
+('equipo_de_sonido', 'Sonido y multimedia', 5, 100.00),
+('mesa_redonda', 'Mobiliario', 30, 5.00),
+('catering_basico', 'Cocina y catering', 0, 200.00);
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Camila', 'Torres', 'camila.torres@example.com', '3109876543', 'pendiente', 1);
+-- Proveedores
+INSERT IGNORE INTO proveedores (nombre_proveedor, servicio, contacto) VALUES
+('sonidopro', 'Sonido y multimedia', 'contacto@sonidopro.com'),
+('decor_arte', 'Decoración', 'info@decorarte.com'),
+('catering_express', 'Cocina y catering', 'ventas@cateringexpress.com');
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Santiago', 'Martínez', 'santiago.martinez@example.com', '3132223344', 'pendiente', 1);
+-- Eventos
+INSERT IGNORE INTO eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario) VALUES
+('boda_ana_y_luis', 'Boda civil en jardín', '2025-10-12', 'Jardín Central', 'pendiente', '05:00:00', 'social', 1500.00, 1),
+('conferencia_tech_2025', 'Evento corporativo de tecnología', '2025-11-05', 'Centro de Convenciones', 'en progreso', '08:00:00', 'corporativo', 5000.00, 2);
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Valentina', 'López', 'valentina.lopez@example.com', '3145556677', 'pendiente', 1);
+-- Invitados
+INSERT IGNORE INTO invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento) VALUES
+('Carlos', 'Lopez', 'carlos.lopez@email.com', '555-1234', 'confirmado', 1),
+('María', 'Fernandez', 'maria.fernandez@email.com', '555-5678', 'pendiente', 1),
+('Jorge', 'Martínez', 'jorge.martinez@email.com', '555-8765', 'confirmado', 2);
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Emilio', 'Hernández', 'emilio.hernandez@example.com', '3151112233', 'pendiente', 1);
+-- DetalleRecursos
+       /*
+INSERT IGNORE INTO detalle_recursos (id_evento, id_recurso, cantidad) VALUES
+(1, 1, 50),
+(1, 2, 1),
+(1, 4, 1),
+(2, 4, 2),
+(2, 3, 10);
 
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Isabella', 'Mendoza', 'isabella.mendoza@example.com', '3164448899', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Diego', 'Castillo', 'diego.castillo@example.com', '3173332211', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Mariana', 'Vargas', 'mariana.vargas@example.com', '3189997766', 'pendiente', 1);
-
-INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento)
-VALUES ('Gabriel', 'Ortega', 'gabriel.ortega@example.com', '3198886655', 'pendiente', 1);
+-- DetalleProveedores
+INSERT IGNORE INTO detalle_proveedores (id_evento, id_proveedor, costo, observaciones) VALUES
+(1, 2, 300.00, 'Decoración floral incluida'),
+(1, 3, 500.00, 'Catering para 50 personas'),
+(2, 1, 1200.00, 'Sonido para auditorio grande');
+       
+        */
