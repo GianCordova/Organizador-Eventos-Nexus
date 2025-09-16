@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class RestExceptionHandler {
+public class RestExceptionHandlerEvento {
 
     @ExceptionHandler(EventoYaExisteException.class)
     public ResponseEntity<Error> handleException(EventoYaExisteException ex) {

@@ -1,4 +1,4 @@
-package org.nexus.proyecto_fn_nexus.dominio.repository;
+package org.nexus.proyecto_fn_nexus.repository;
 
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModificarRecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.RecursoDto;

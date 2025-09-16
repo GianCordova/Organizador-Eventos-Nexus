@@ -5,13 +5,12 @@ import org.nexus.proyecto_fn_nexus.dominio.dto.ModificarRecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.RecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.exception.RecursoNoExisteException;
 import org.nexus.proyecto_fn_nexus.dominio.exception.RecursoYaExisteException;
-import org.nexus.proyecto_fn_nexus.dominio.repository.RecursoRepository;
+import org.nexus.proyecto_fn_nexus.repository.RecursoRepository;
 import org.nexus.proyecto_fn_nexus.persistence.crud.CrudRecursoEntity;
 import org.nexus.proyecto_fn_nexus.persistence.entity.RecursoEntity;
 import org.nexus.proyecto_fn_nexus.persistence.mapper.RecursoMapper;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
