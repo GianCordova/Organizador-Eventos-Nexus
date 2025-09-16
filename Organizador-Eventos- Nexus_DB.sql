@@ -2,15 +2,6 @@ drop database if exists organizador_eventos_db;
 create database organizador_eventos_db;
 use organizador_eventos_db;
 
-create table RegLog (
-	id  int auto_increment,
-    nombre varchar(100) not null,
-    email varchar(100) not null unique,
-    password varchar(255) not null,
-    rol VARCHAR(20) not null default 'Usuario',
-    constraint pk_RegLog primary key (id)
-);
-
 create table Usuarios (
 	idUsuario int auto_increment,
 	nombre varchar(100) not null,

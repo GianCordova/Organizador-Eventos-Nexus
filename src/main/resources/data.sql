@@ -1,18 +1,45 @@
 -- Usuarios
-INSERT IGNORE INTO Usuarios (nombre, apellido, email, password, rol)
-VALUES ('Juan', 'Pérez', 'juan.perez@email.com', 'pass123', 'cliente');
+INSERT INTO usuarios (nombre, apellido, email, password, rol) VALUES
+('Ana', 'Gómez', 'ana.gomez@email.com', 'pass123', 'cliente'),
+('Luis', 'Pérez', 'luis.perez@email.com', 'pass123', 'administrador'),
+('Carla', 'Ramírez', 'carla.ramirez@email.com', 'pass123', 'cliente');
 
-INSERT IGNORE INTO Usuarios (nombre, apellido, email, password, rol)
-VALUES ('Ana', 'Gómez', 'ana.gomez@email.com', 'pass123', 'administrador');
+-- Recursos
+INSERT INTO recursos (nombre_recurso, categoria, stock, precio_alquiler) VALUES
+('sillas_plegables', 'Mobiliario', 100, 2.50),
+('carpa_5x5', 'Cubiertas y estructuras', 10, 50.00),
+('luces_led', 'Iluminación', 20, 15.00),
+('equipo_de_sonido', 'Sonido y multimedia', 5, 100.00),
+('mesa_redonda', 'Mobiliario', 30, 5.00),
+('catering_basico', 'Cocina y catering', 0, 200.00);
 
-INSERT IGNORE INTO Usuarios (nombre, apellido, email, password, rol)
-VALUES ('Luis', 'Ramírez', 'luis.ramirez@email.com', 'pass123', 'cliente');
+-- Proveedores
+INSERT INTO proveedores (nombre_proveedor, servicio, contacto) VALUES
+('sonidopro', 'Sonido y multimedia', 'contacto@sonidopro.com'),
+('decor_arte', 'Decoración', 'info@decorarte.com'),
+('catering_express', 'Cocina y catering', 'ventas@cateringexpress.com');
+
 -- Eventos
-INSERT IGNORE INTO Eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario)
-VALUES ('Boda Martínez', 'Boda de ejemplo', '2025-12-20', 'Salón Principal', 'pendiente', '05:00:00', 'social', 1500.00, 1);
+INSERT INTO eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario) VALUES
+('boda_ana_y_luis', 'Boda civil en jardín', '2025-10-12', 'Jardín Central', 'pendiente', '05:00:00', 'social', 1500.00, 1),
+('conferencia_tech_2025', 'Evento corporativo de tecnología', '2025-11-05', 'Centro de Convenciones', 'en progreso', '08:00:00', 'corporativo', 5000.00, 2);
 
-INSERT IGNORE INTO Eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario)
-VALUES ('Conferencia Tech', 'Evento corporativo de tecnología', '2025-11-15', 'Auditorio Central', 'en_progreso', '03:00:00', 'corporativo', 3000.00, 2);
+-- Invitados
+INSERT INTO invitados (nombre, apellido, correo, telefono, estado_asistencia, id_evento) VALUES
+('Carlos', 'Lopez', 'carlos.lopez@email.com', '555-1234', 'confirmado', 1),
+('María', 'Fernandez', 'maria.fernandez@email.com', '555-5678', 'pendiente', 1),
+('Jorge', 'Martínez', 'jorge.martinez@email.com', '555-8765', 'confirmado', 2);
 
-INSERT IGNORE INTO Eventos (nombre_evento, descripcion, fecha, lugar, estado, duracion, tipo_evento, costo_evento, id_usuario)
-VALUES ('Festival Cultural', 'Festival de danzas y música', '2025-10-05', 'Plaza Central', 'completada', '06:00:00', 'cultural', 2000.00, 3);
+-- DetalleRecursos
+INSERT INTO detalle_recursos (id_evento, id_recurso, cantidad) VALUES
+(1, 1, 50),
+(1, 2, 1),
+(1, 4, 1),
+(2, 4, 2),
+(2, 3, 10);
+
+-- DetalleProveedores
+INSERT INTO detalle_proveedores (id_evento, id_proveedor, costo, observaciones) VALUES
+(1, 2, 300.00, 'Decoración floral incluida'),
+(1, 3, 500.00, 'Catering para 50 personas'),
+(2, 1, 1200.00, 'Sonido para auditorio grande');
