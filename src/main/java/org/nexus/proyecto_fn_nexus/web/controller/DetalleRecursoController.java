@@ -57,6 +57,8 @@ public class DetalleRecursoController {
         return ResponseEntity.ok(detalleRecursoService.modificarDetalleRecurso(idDetalleRecurso, dto));
     }
 
+
+
     @DeleteMapping("{idDetalleRecurso}")
     public ResponseEntity<Void> eliminarDetalleRecurso(@PathVariable Long idDetalleRecurso) {
         detalleRecursoService.eliminarDetalleRecurso(idDetalleRecurso);
