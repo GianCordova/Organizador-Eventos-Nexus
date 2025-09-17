@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "DetalleProveedores")
 @Data
-public class DetalleProvedoresEntity {
+public class DetalleProveedorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
