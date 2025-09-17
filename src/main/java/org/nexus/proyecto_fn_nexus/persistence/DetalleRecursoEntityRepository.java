@@ -5,6 +5,7 @@ import org.nexus.proyecto_fn_nexus.dominio.dto.ModDetalleRecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.exception.DetalleRecursoNoExisteException;
 import org.nexus.proyecto_fn_nexus.dominio.exception.DetalleRecursoYaExisteException;
 import org.nexus.proyecto_fn_nexus.persistence.entity.DetalleRecursoEntity;
+import org.nexus.proyecto_fn_nexus.persistence.mapper.DetalleRecursoMapper;
 import org.nexus.proyecto_fn_nexus.repository.DetalleRecursoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -59,7 +60,7 @@ public class DetalleRecursoEntityRepository implements DetalleRecursoRepository 
         }
 
         // Modificamos la entidad con los datos del DTO
-        this.detalleRecursoMapper.modificarEntityFromDto(modDetalleRecursoDto, detalleRecursoEntity);
+        this.detalleRecursoMapper.actualizarEntityDesdeDto(modDetalleRecursoDto, detalleRecursoEntity);
 
         // Guardamos los cambios y retornamos el DTO actualizado
         return this.detalleRecursoMapper.toDto(this.CrudDetalleRecursoEntity.save(detalleRecursoEntity));
