@@ -13,12 +13,12 @@ public class RecursoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRecurso;
-    @Column(length = 150, unique = true, nullable = false)
+    @Column(name = "nombreRecurso", length = 150, nullable = false)
     private String nombreRecurso;
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria", length = 40, nullable = false)
     private CategoriaRecurso categoria;
-    @Column(nullable = false)
+    @Column(name = "stock", nullable = false)
     private Integer stock;
     @Column(name = "precioAlquiler", precision = 10, scale = 2, nullable = false)
     private BigDecimal precioAlquiler;

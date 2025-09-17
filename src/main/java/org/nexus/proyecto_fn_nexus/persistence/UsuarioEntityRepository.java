@@ -75,7 +75,7 @@ public class UsuarioEntityRepository implements UsuarioRepository {
         UsuarioEntity usuario = this.crudUsuarioEntity.findById(idUsuario).orElse(null);
 
         if (usuario == null) {
-            throw new EventoNoExisteException(idUsuario);
+            throw new UsuarioNoExisteException(idUsuario);
         }
 
         this.crudUsuarioEntity.delete(usuario);

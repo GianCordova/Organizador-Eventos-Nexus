@@ -64,6 +64,11 @@ public class RecursoEntityRepository implements RecursoRepository {
 
     @Override
     public void eliminarRecurso(Integer idRecurso) {
+        RecursoEntity recurso = this.crudRecursoEntity.findById(idRecurso).orElse(null);
 
+        if (recurso == null) {
+            throw new RecursoNoExisteException(idRecurso);
+        }
+        this.crudRecursoEntity.delete(recurso);
     }
 }
