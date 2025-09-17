@@ -23,7 +23,7 @@ public class DetalleRecursoEntity {
     // Relación con evento (organizador)
     @ManyToOne
     @JoinColumn(name = "idEvento", nullable = false)
-    private InvitadoEntity evento;
+    private EventoEntity evento;
 
     // Relación con recurso (organizador)
     @ManyToOne

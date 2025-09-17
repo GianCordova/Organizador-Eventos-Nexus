@@ -22,7 +22,7 @@ public class RolMapper {
         if (estado == null) return null;
         return switch (estado) {
             case cliente -> "cliente";
-            case administrador -> "en administrador";
+            case administrador -> "administrador";
 
         };
     }
