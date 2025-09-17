@@ -37,7 +37,7 @@ public class DetalleProveedorEntityRepository implements DetalleProveedoresRepos
     @Override
     public DetalleProveedorDto guardarDetalleProveedor(DetalleProveedorDto detalleProveedorDto) {
         // Verificamos si el detalle de proveedor ya existe en el sistema
-        if (this.crudDetalleProveedorEntity.countDetalleProvedoresEntitiesByCantidad(detalleProveedorDto.observaciones().toString()) != null) {
+        if (this.crudDetalleProveedorEntity.countDetalleProvedoresEntitiesByObservaciones(detalleProveedorDto.observaciones().toString()) != null) {
             throw new DetalleProveedorYaExisteException(detalleProveedorDto.toString());
         }
 

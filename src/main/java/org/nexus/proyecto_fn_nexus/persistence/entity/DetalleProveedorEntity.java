@@ -23,7 +23,7 @@ public class DetalleProveedorEntity {
     // Relación con proveedor (organizador)
     @ManyToOne
     @JoinColumn(name = "idProveedor", nullable = false)
-    private RecursoEntity proveedor;
+    private ProveedorEntity proveedor;
 
 
     @Column(name = "costo", precision = 10, scale = 2, nullable = false)

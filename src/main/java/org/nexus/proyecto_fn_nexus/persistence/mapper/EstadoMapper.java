@@ -10,7 +10,7 @@ public class EstadoMapper {
         if (estado == null) return null;
         return switch (estado.toLowerCase()) {
             case "pendiente" -> Estado.pendiente;
-            case "en progreso" -> Estado.en_progreso;
+            case "enProgreso" -> Estado.enProgreso;
             case "completada" -> Estado.completada;
             default -> null;
         };
@@ -21,7 +21,7 @@ public class EstadoMapper {
         if (estado == null) return null;
         return switch (estado) {
             case pendiente -> "pendiente";
-            case en_progreso -> "en progreso";
+            case enProgreso -> "enProgreso";
             case completada -> "completada";
         };
     }

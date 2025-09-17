@@ -35,7 +35,7 @@ public class DetalleRecursoEntityRepository implements DetalleRecursoRepository 
     @Override
     public DetalleRecursoDto guardarDetalleRecurso(DetalleRecursoDto detalleRecursoDto) {
         // Verificamos si el detalle de recurso ya existe en el sistema
-        if (this.CrudDetalleRecursoEntity.findDetalleRecursoEntitiesByCantidad(detalleRecursoDto.cantidad().toString()) != null) {
+        if (this.CrudDetalleRecursoEntity.findDetalleRecursoEntitiesByCantidad(detalleRecursoDto.cantidad()) != null) {
             throw new DetalleRecursoYaExisteException(detalleRecursoDto.toString());
         }
 

@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface CrudDetalleProveedorEntity extends CrudRepository<DetalleProveedorEntity, Long> {
     // En esta parte creamos el DAO o el acceso al CRUD de la entidad de los detalleRecursos
 
-    DetalleProveedorEntity countDetalleProvedoresEntitiesByCantidad(String cantidad);
+    DetalleProveedorEntity countDetalleProvedoresEntitiesByObservaciones(String observaciones);
 
 }
