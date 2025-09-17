@@ -5,7 +5,7 @@ import org.nexus.proyecto_fn_nexus.persistence.entity.DetalleRecursoEntity;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface CrudDetalleRecursosEntity extends CrudRepository <DetalleRecursoEntity, Long> {
+public interface CrudDetalleRecursoEntity extends CrudRepository <DetalleRecursoEntity, Long> {
     // En esta parte creamos el DAO o el acceso al CRUD de la entidad de los detalleRecursos
 
     DetalleRecursoEntity findDetalleRecursoEntitiesByCantidad(String cantidad);

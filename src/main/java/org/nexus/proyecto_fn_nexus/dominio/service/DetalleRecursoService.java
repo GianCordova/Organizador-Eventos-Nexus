@@ -21,7 +21,7 @@ public class DetalleRecursoService {
     }
 
     public DetalleRecursoDto buscarPorId(Integer idDetalleRecurso){
-        return this.detalleRecursoRepository.buscarPorId(idDetalleRecurso);
+        return this.detalleRecursoRepository.buscarPorId(idDetalleRecurso.longValue());
     }
 
     public DetalleRecursoDto guardarDetalleRecurso(DetalleRecursoDto detalleRecursoDto){
