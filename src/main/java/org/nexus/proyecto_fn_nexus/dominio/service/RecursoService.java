@@ -1,5 +1,6 @@
 package org.nexus.proyecto_fn_nexus.dominio.service;
 
+import jakarta.transaction.Transactional;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModificarRecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.RecursoDto;
 import org.nexus.proyecto_fn_nexus.repository.RecursoRepository;
@@ -23,6 +24,7 @@ public class RecursoService {
         return this.recursoRepository.buscarPorId(idRecurso);
     }
 
+    @Transactional
     public RecursoDto guardarRecurso(RecursoDto recursoDto){
         return this.recursoRepository.guardarRecurso(recursoDto);
     }
