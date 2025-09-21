@@ -19,7 +19,7 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class EventoBean implements Serializable {
+public class EventoJsf implements Serializable {
 
     @Autowired
     private EventoService eventoService;
@@ -44,7 +44,7 @@ public class EventoBean implements Serializable {
     public Estado[] getEstadosDisponibles() {
         return Estado.values();
     }
-// En EventoBean
+// En EventoJsf
 
     public TipoEvento[] getTiposEventoDisponibles() {
         return TipoEvento.values();

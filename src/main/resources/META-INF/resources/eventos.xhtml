@@ -26,13 +26,13 @@
                                  icon="pi pi-plus"
                                  class="p-button-success"
                                  onclick="PF('dlgEvento').show();"
-                                 actionListener="#{eventoBean.prepararNuevo}"
+                                 actionListener="#{eventoJsf.prepararNuevo}"
                                  update=":formEvento"/>
             </div>
 
             <!-- DataTable con card simple -->
             <div class="bg-white border-round shadow-2">
-                <p:dataTable value="#{eventoBean.listaEventos}" var="ev"
+                <p:dataTable value="#{eventoJsf.listaEventos}" var="ev"
                              paginator="true" rows="10"
                              styleClass="p-datatable-striped">
 
@@ -81,14 +81,14 @@
                                          title="Editar"
                                          class="p-button-rounded p-button-text"
                                          update=":formEvento"
-                                         actionListener="#{eventoBean.prepararEdicion(ev)}"
+                                         actionListener="#{eventoJsf.prepararEdicion(ev)}"
                                          oncomplete="PF('dlgEvento').show()"/>
                         <p:commandButton icon="pi pi-trash"
                                          title="Eliminar"
                                          class="p-button-rounded p-button-danger p-button-text ml-2"
                                          onclick="PF('confirmEliminar').show();"
                                          process="@this">
-                            <f:setPropertyActionListener target="#{eventoBean.idEvento}" value="#{ev.idEvento}"/>
+                            <f:setPropertyActionListener target="#{eventoJsf.idEvento}" value="#{ev.idEvento}"/>
                         </p:commandButton>
                     </p:column>
 
@@ -103,25 +103,25 @@
                 <div class="p-3">
                     <div class="field mb-3">
                         <label class="font-semibold block mb-2">Nombre</label>
-                        <p:inputText value="#{eventoBean.nombreEvento}" required="true" styleClass="w-full"/>
+                        <p:inputText value="#{eventoJsf.nombreEvento}" required="true" styleClass="w-full"/>
                     </div>
 
                     <div class="field mb-3">
                         <label class="font-semibold block mb-2">Descripción</label>
-                        <p:inputTextarea value="#{eventoBean.descripcion}" autoResize="true" styleClass="w-full"/>
+                        <p:inputTextarea value="#{eventoJsf.descripcion}" autoResize="true" styleClass="w-full"/>
                     </div>
 
                     <div class="grid">
                         <div class="col-6">
                             <div class="field mb-3">
                                 <label class="font-semibold block mb-2">Fecha</label>
-                                <p:datePicker value="#{eventoBean.fecha}" showIcon="true" styleClass="w-full"/>
+                                <p:datePicker value="#{eventoJsf.fecha}" showIcon="true" styleClass="w-full"/>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="field mb-3">
                                 <label class="font-semibold block mb-2">Lugar</label>
-                                <p:inputText value="#{eventoBean.lugar}" styleClass="w-full"/>
+                                <p:inputText value="#{eventoJsf.lugar}" styleClass="w-full"/>
                             </div>
                         </div>
                     </div>
@@ -130,15 +130,15 @@
                         <div class="col-6">
                             <div class="field mb-3">
                                 <label class="font-semibold block mb-2">Estado</label>
-                                <h:selectOneMenu value="#{eventoBean.estado}" styleClass="w-full">
-                                    <f:selectItems value="#{eventoBean.estadosDisponibles}" var="e" itemValue="#{e}" itemLabel="#{e.name()}"/>
+                                <h:selectOneMenu value="#{eventoJsf.estado}" styleClass="w-full">
+                                    <f:selectItems value="#{eventoJsf.estadosDisponibles}" var="e" itemValue="#{e}" itemLabel="#{e.name()}"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="field mb-3">
                                 <label class="font-semibold block mb-2">Duración</label>
-                                <p:calendar value="#{eventoBean.duracion}" pattern="HH:mm" timeOnly="true" showButtonPanel="true" styleClass="w-full"/>
+                                <p:calendar value="#{eventoJsf.duracion}" pattern="HH:mm" timeOnly="true" showButtonPanel="true" styleClass="w-full"/>
                             </div>
                         </div>
                     </div>
@@ -147,28 +147,28 @@
                         <div class="col-6">
                             <div class="field mb-3">
                                 <label class="font-semibold block mb-2">Tipo</label>
-                                <h:selectOneMenu value="#{eventoBean.tipoEvento}" styleClass="w-full">
-                                    <f:selectItems value="#{eventoBean.tiposEventoDisponibles}" var="t" itemValue="#{t}" itemLabel="#{t.name()}"/>
+                                <h:selectOneMenu value="#{eventoJsf.tipoEvento}" styleClass="w-full">
+                                    <f:selectItems value="#{eventoJsf.tiposEventoDisponibles}" var="t" itemValue="#{t}" itemLabel="#{t.name()}"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="field mb-3">
                                 <label class="font-semibold block mb-2">Costo</label>
-                                <p:inputNumber value="#{eventoBean.costoEvento}" styleClass="w-full"/>
+                                <p:inputNumber value="#{eventoJsf.costoEvento}" styleClass="w-full"/>
                             </div>
                         </div>
                     </div>
 
                     <div class="field mb-3">
                         <label class="font-semibold block mb-2">ID Usuario</label>
-                        <p:inputText value="#{eventoBean.idUsuario}" styleClass="w-full"/>
+                        <p:inputText value="#{eventoJsf.idUsuario}" styleClass="w-full"/>
                     </div>
 
                     <div class="flex justify-content-end gap-2 pt-3">
                         <p:commandButton value="Cancelar" type="button" class="p-button-secondary" onclick="PF('dlgEvento').hide()"/>
                         <p:commandButton value="Guardar"
-                                         actionListener="#{eventoBean.guardar}"
+                                         actionListener="#{eventoJsf.guardar}"
                                          update=":formEventos :formEvento"
                                          class="p-button-success"
                                          oncomplete="PF('dlgEvento').hide()"/>
@@ -180,7 +180,7 @@
         <!-- Confirmación de eliminar -->
         <p:confirmDialog widgetVar="confirmEliminar" header="Confirmación" message="¿Desea eliminar este evento?"
                          severity="warn">
-            <p:commandButton value="Sí" actionListener="#{eventoBean.eliminar}"
+            <p:commandButton value="Sí" actionListener="#{eventoJsf.eliminar}"
                              update=":formEventos" oncomplete="PF('confirmEliminar').hide()"
                              class="p-button-danger"/>
             <p:commandButton value="No" onclick="PF('confirmEliminar').hide()" type="button" class="p-button-secondary"/>
