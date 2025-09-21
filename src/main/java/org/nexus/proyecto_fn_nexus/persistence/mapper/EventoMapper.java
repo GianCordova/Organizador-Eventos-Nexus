@@ -45,5 +45,6 @@ public interface EventoMapper {
     @Mapping(source = "duracion", target = "duracion")
     @Mapping(source = "tipoEvento", target = "tipoEvento", qualifiedByName = "stringToTipoEvento")
     @Mapping(source = "costoEvento", target = "costoEvento")
+    @Mapping(source = "idUsuario", target = "usuario.idUsuario")
     void modificarEntityFromDto(ModEventoDto mod, @MappingTarget EventoEntity entity);
 }
