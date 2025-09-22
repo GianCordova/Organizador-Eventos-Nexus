@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-09-17T19:01:56-0600",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
+    date = "2025-09-21T19:52:45-0600",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21 (Oracle Corporation)"
 )
 @Component
 public class UsuarioMapperImpl implements UsuarioMapper {
@@ -92,6 +92,11 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         entity.setApellido( mod.apellido() );
         entity.setEmail( mod.email() );
         entity.setPassword( mod.password() );
-        entity.setRol( RolMapper.stringToRol( mod.rol() ) );
+        if ( mod.rol() != null ) {
+            entity.setRol( RolMapper.stringToRol( mod.rol().name() ) );
+        }
+        else {
+            entity.setRol( null );
+        }
     }
 }

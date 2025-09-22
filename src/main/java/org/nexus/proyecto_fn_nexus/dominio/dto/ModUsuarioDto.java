@@ -1,6 +1,7 @@
 package org.nexus.proyecto_fn_nexus.dominio.dto;
 
 import jakarta.validation.constraints.*;
+import org.nexus.proyecto_fn_nexus.dominio.Rol;
 
 
 public record ModUsuarioDto(
@@ -14,10 +15,10 @@ public record ModUsuarioDto(
         String email,
 
         @NotNull (message = "La contraseña es obligatoria")
-        String password,
+            String password,
 
         @NotNull(message = "El rol es obligatorio y porfavor unicamente poner cliente y administrador")
-        String rol
+        Rol rol
 
 ) {}
 
