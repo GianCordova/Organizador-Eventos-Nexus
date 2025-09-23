@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>Menú Principal - Organizador de Eventos Nexus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            width: 80%;
+            max-width: 900px;
+            justify-items: center;
+        }
+        .button-grid .usuarios-button,
+        .button-grid .recursos-button,
+        .button-grid .eventos-button,
+        .button-grid .invitados-button,
+        .button-grid .proveedores-button {
+            padding: 40px 60px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        }
+        .button-grid .usuarios-button:hover,
+        .button-grid .recursos-button:hover,
+        .button-grid .eventos-button:hover,
+        .button-grid .invitados-button:hover,
+        .button-grid .proveedores-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+        .usuarios-button { background-color: #3498db; }
+        .recursos-button { background-color: #2ecc71; }
+        .eventos-button { background-color: #e74c3c; }
+        .invitados-button { background-color: #9b59b6; }
+        .proveedores-button { background-color: #f39c12; grid-column: span 2; }
+    </style>
+</h:head>
+<h:body>
+    <h1>Menú Principal - Organizador de Eventos Nexus</h1>
+    <h:form class="button-grid">
+        <h:commandButton value="Gestión de Usuarios" styleClass="usuarios-button" action="X" />
+        <h:commandButton value="Gestión de Recursos" styleClass="recursos-button" action="X" />
+        <h:commandButton value="Gestión de Proveedores" styleClass="eventos-button" action="X" />
+        <h:commandButton value="Gestión de Invitados" styleClass="invitados-button" action="X" />
+        <h:commandButton value="Gestión de Eventos" styleClass="proveedores-button" action="X" />
+    </h:form>
+</h:body>
+</html>
