@@ -6,6 +6,33 @@
     <title>Gestión de Proveedores</title>
     <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
     <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-light.css"/>
+
+    <!-- Estilos para botón Regresar -->
+    <style>
+        .regresar-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.12);
+            border: none;
+            cursor: pointer;
+        }
+        .regresar-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+        }
+        .regresar-button i {
+            font-size: 1.1rem;
+        }
+        .header-left { display:flex; align-items:center; gap:12px; }
+    </style>
 </h:head>
 <h:body class="bg-gray-50">
     <!-- Header simple -->
@@ -19,9 +46,20 @@
         <h:form id="formProveedores">
             <p:growl id="messages" showDetail="true"/>
 
-            <!-- Botón de nuevo proveedor -->
+            <!-- Encabezado con botón Regresar y Nuevo Proveedor -->
             <div class="flex justify-content-between align-items-center mb-4">
-                <h2 class="text-xl m-0">Lista de Proveedores</h2>
+                <div class="header-left">
+                    <!-- Botón Regresar -->
+                    <h:link outcome="/inicio" styleClass="regresar-button">
+                        <i class="pi pi-arrow-left"></i>
+                        <span>Regresar</span>
+                    </h:link>
+
+                    <!-- Título -->
+                    <h2 class="text-xl m-0">Lista de Proveedores</h2>
+                </div>
+
+                <!-- Botón Nuevo Proveedor -->
                 <p:commandButton value="Nuevo Proveedor"
                                  icon="pi pi-plus"
                                  class="p-button-success"
@@ -30,7 +68,7 @@
                                  update=":formProveedor"/>
             </div>
 
-            <!-- DataTable con card simple -->
+            <!-- DataTable -->
             <div class="bg-white border-round shadow-2">
                 <p:dataTable value="#{proveedorJsf.listaProveedores}" var="prov"
                              paginator="true" rows="10"
@@ -73,7 +111,7 @@
 
         </h:form>
 
-        <!-- Dialogo mejorado pero simple -->
+        <!-- Dialogo crear/editar proveedor -->
         <p:dialog header="Proveedor" widgetVar="dlgProveedor" modal="true" resizable="false" width="500">
             <h:form id="formProveedor">
                 <div class="p-3">
