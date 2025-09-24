@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
+
     date = "2025-09-21T19:52:45-0600",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21 (Oracle Corporation)"
+
 )
 @Component
 public class UsuarioMapperImpl implements UsuarioMapper {
