@@ -3,6 +3,7 @@ package org.nexus.proyecto_fn_nexus.web.jsf;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import org.nexus.proyecto_fn_nexus.dominio.CategoriaRecurso;
@@ -23,6 +24,9 @@ public class RecursoJsf implements Serializable {
     private final RecursoService recursoService;
     private RecursoJsfDto nuevoRecurso;
     private List<RecursoJsfDto> listaRecursos;
+    private Integer idRecurso;
+
+
 
     @Autowired
     public RecursoJsf(RecursoService recursoService) {
@@ -47,6 +51,15 @@ public class RecursoJsf implements Serializable {
         }).collect(Collectors.toList());
     }
 
+    public void guardarOActualizar() {
+        if (this.nuevoRecurso.getIdRecurso() == null) {
+            guardarRecurso();
+        } else {
+            actualizarRecurso();
+        }
+    }
+
+
     public void guardarRecurso() {
         System.out.println(">>> guardarRecurso() llamado"); // <--- para verificar que entra al método
 
@@ -58,12 +71,13 @@ public class RecursoJsf implements Serializable {
             System.out.println("Precio: " + this.nuevoRecurso.getRentalPrice());
 
             RecursoDto recursoDto = new RecursoDto(
-                    null,
+                    this.nuevoRecurso.getIdRecurso(),  // ahora sí usas el id
                     this.nuevoRecurso.getResourceName(),
                     this.nuevoRecurso.getCategory(),
                     this.nuevoRecurso.getStock(),
                     this.nuevoRecurso.getRentalPrice()
             );
+
 
             this.recursoService.guardarRecurso(recursoDto);
             this.nuevoRecurso = new RecursoJsfDto();
@@ -106,9 +120,9 @@ public class RecursoJsf implements Serializable {
         this.nuevoRecurso = recursoDto;
     }
 
-    public void eliminarRecurso(Integer idRecurso) {
+    public void eliminarRecurso() {
         try {
-            this.recursoService.eliminarRecurso(idRecurso);
+            this.recursoService.eliminarRecurso(this.idRecurso);
             this.listaRecursos = mapToJsfDto(this.recursoService.obtenerTodo());
 
             FacesContext.getCurrentInstance().addMessage(null,
@@ -118,6 +132,12 @@ public class RecursoJsf implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar", e.getMessage()));
         }
     }
+
+
+
+    public Integer getIdRecurso() { return idRecurso;}
+
+    public void setIdRecurso(Integer idRecurso) {this.idRecurso = idRecurso;}
 
     public CategoriaRecurso[] getCategorias() {
         return CategoriaRecurso.values();
