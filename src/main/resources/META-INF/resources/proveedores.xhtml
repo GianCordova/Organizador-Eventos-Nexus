@@ -2,15 +2,13 @@
 <html xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
 <h:head>
     <title>Gestión de Proveedores</title>
     <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
     <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-light.css"/>
 </h:head>
-
 <h:body class="bg-gray-50">
-    <!-- Header -->
+    <!-- Header simple -->
     <div class="bg-primary text-white p-4 mb-4">
         <h1 class="text-3xl font-bold m-0">
             Gestión de Proveedores
@@ -21,7 +19,7 @@
         <h:form id="formProveedores">
             <p:growl id="messages" showDetail="true"/>
 
-            <!-- Encabezado y botón nuevo -->
+            <!-- Botón de nuevo proveedor -->
             <div class="flex justify-content-between align-items-center mb-4">
                 <h2 class="text-xl m-0">Lista de Proveedores</h2>
                 <p:commandButton value="Nuevo Proveedor"
@@ -32,7 +30,7 @@
                                  update=":formProveedor"/>
             </div>
 
-            <!-- Tabla -->
+            <!-- DataTable con card simple -->
             <div class="bg-white border-round shadow-2">
                 <p:dataTable value="#{proveedorJsf.listaProveedores}" var="prov"
                              paginator="true" rows="10"
@@ -42,7 +40,7 @@
                         <h:outputText value="#{prov.idProveedor}"/>
                     </p:column>
 
-                    <p:column headerText="Nombre">
+                    <p:column headerText="Nombre del proveedor">
                         <h:outputText value="#{prov.nombreProveedor}"/>
                     </p:column>
 
@@ -69,11 +67,13 @@
                             <f:setPropertyActionListener target="#{proveedorJsf.idProveedor}" value="#{prov.idProveedor}"/>
                         </p:commandButton>
                     </p:column>
+
                 </p:dataTable>
             </div>
+
         </h:form>
 
-        <!-- Diálogo -->
+        <!-- Dialogo mejorado pero simple -->
         <p:dialog header="Proveedor" widgetVar="dlgProveedor" modal="true" resizable="false" width="500">
             <h:form id="formProveedor">
                 <div class="p-3">
@@ -84,12 +84,12 @@
 
                     <div class="field mb-3">
                         <label class="font-semibold block mb-2">Servicio</label>
-                        <p:inputText value="#{proveedorJsf.servicio}" required="true" styleClass="w-full"/>
+                        <p:inputTextarea value="#{proveedorJsf.servicio}" autoResize="true" styleClass="w-full"/>
                     </div>
 
                     <div class="field mb-3">
                         <label class="font-semibold block mb-2">Contacto</label>
-                        <p:inputText value="#{proveedorJsf.contacto}" required="true" styleClass="w-full"/>
+                        <p:inputTextarea value="#{proveedorJsf.contacto}" autoResize="true" styleClass="w-full"/>
                     </div>
 
                     <div class="flex justify-content-end gap-2 pt-3">
@@ -113,5 +113,6 @@
             <p:commandButton value="No" onclick="PF('confirmEliminar').hide()" type="button" class="p-button-secondary"/>
         </p:confirmDialog>
     </div>
+
 </h:body>
 </html>

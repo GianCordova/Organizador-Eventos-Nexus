@@ -6,11 +6,11 @@ import jakarta.inject.Named;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModProveedorDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ProveedorDto;
 import org.nexus.proyecto_fn_nexus.dominio.service.ProveedorService;
+import org.nexus.proyecto_fn_nexus.web.jsf.dto.ProveedorJsfDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Named
 @ViewScoped
@@ -20,7 +20,7 @@ public class ProveedorJsf implements Serializable {
     private ProveedorService proveedorService;
 
     // Lista para la vista
-    private List<ProveedorDto> listaProveedores;
+    private List<ProveedorJsfDto> listaProveedores;
 
     // Para creación/edición
     private Long idProveedor;
@@ -36,7 +36,16 @@ public class ProveedorJsf implements Serializable {
     }
 
     public void cargarProveedores() {
-        this.listaProveedores = proveedorService.obtenerTodo();
+        List<ProveedorDto> proveedores = proveedorService.obtenerTodo();
+        // Convertir a DTO específico de JSF
+        this.listaProveedores = proveedores.stream()
+                .map(ev -> new ProveedorJsfDto(
+                        ev.idProveedor(),
+                        ev.nombreProveedor(),
+                        ev.servicio(),
+                        ev.contacto()
+                ))
+                .toList();
     }
 
     public void prepararNuevo() {
@@ -44,12 +53,12 @@ public class ProveedorJsf implements Serializable {
         this.modoEdicion = false;
     }
 
-    public void prepararEdicion(ProveedorDto proveedor) {
+    public void prepararEdicion(ProveedorJsfDto proveedor) {
         this.modoEdicion = true;
-        this.idProveedor = proveedor.idProveedor();
-        this.nombreProveedor = proveedor.nombreProveedor();
-        this.servicio = proveedor.servicio();
-        this.contacto = proveedor.contacto();
+        this.idProveedor = proveedor.getIdProveedor();
+        this.nombreProveedor = proveedor.getNombreProveedor();
+        this.servicio = proveedor.getServicio();
+        this.contacto = proveedor.getContacto();
     }
 
     public void guardar() {
@@ -85,20 +94,44 @@ public class ProveedorJsf implements Serializable {
         contacto = null;
     }
 
-    // Getters y Setters
-    public List<ProveedorDto> getListaProveedores() { return listaProveedores; }
+    // Getters y setters
+    public List<ProveedorJsfDto> getListaProveedores() {
+        return listaProveedores;
+    }
 
-    public boolean isModoEdicion() { return modoEdicion; }
+    public boolean isModoEdicion() {
+        return modoEdicion;
+    }
 
-    public Long getIdProveedor() { return idProveedor; }
-    public void setIdProveedor(Long idProveedor) { this.idProveedor = idProveedor; }
+    public Long getIdProveedor() {
+        return idProveedor;
+    }
 
-    public String getNombreProveedor() { return nombreProveedor; }
-    public void setNombreProveedor(String nombreProveedor) { this.nombreProveedor = nombreProveedor; }
+    public void setIdProveedor(Long idProveedor) {
+        this.idProveedor = idProveedor;
+    }
 
-    public String getServicio() { return servicio; }
-    public void setServicio(String servicio) { this.servicio = servicio; }
+    public String getNombreProveedor() {
+        return nombreProveedor;
+    }
 
-    public String getContacto() { return contacto; }
-    public void setContacto(String contacto) { this.contacto = contacto; }
+    public void setNombreProveedor(String nombreProveedor) {
+        this.nombreProveedor = nombreProveedor;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
+    }
 }
