@@ -1,6 +1,9 @@
 package org.nexus.proyecto_fn_nexus.dominio.dto;
 
 import jakarta.validation.constraints.*;
+import org.nexus.proyecto_fn_nexus.dominio.Estado;
+import org.nexus.proyecto_fn_nexus.dominio.TipoEvento;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,15 +23,18 @@ public record ModEventoDto (
         String lugar,
 
         @NotNull(message = "El estado es obligatorio")
-        String estado,
+        Estado estado,
 
         @NotNull(message = "La duracion es obligatoria")
         LocalTime duracion,
 
         @NotNull(message = "El tipo de evento es obligatorio")
-        String tipoEvento,
+        TipoEvento tipoEvento,
 
         @NotNull(message = "El costo es obligatorio")
         @DecimalMin(value = "0.0", message = "El costo no puede ser negativo")
-        BigDecimal costoEvento
+        BigDecimal costoEvento,
+
+        @NotNull(message = "El id del usuario organizador es obligatorio")
+        Long idUsuario
 ) {}

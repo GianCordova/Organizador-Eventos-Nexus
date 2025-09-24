@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html  xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-light.css"/>
+
+    <!-- Estilos para el botón REGRESAR (puedes ajustar colores/padding) -->
+    <style>
+        /* Botón regresar: estilo inspirado en tu ejemplo */
+        .regresar-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3498db; /* azul similar a tu ejemplo */
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.12);
+            border: none;
+            cursor: pointer;
+        }
+        .regresar-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+        }
+        .regresar-button i {
+            font-size: 1.1rem;
+        }
+        /* Ajuste para que quede bien con PrimeFlex/PrimeFaces */
+        .header-left { display:flex; align-items:center; gap:12px; }
+    </style>
+</h:head>
+<h:body class="bg-gray-50">
+    <!-- Header simple -->
+    <div class="bg-primary text-white p-4 mb-4">
+        <h1 class="text-3xl font-bold m-0">
+            Gestión de Usuarios
+        </h1>
+    </div>
+
+    <div class="p-4">
+        <h:form id="formUsuarios">
+            <p:growl id="messages" showDetail="true"/>
+
+            <!-- Encabezado de la lista: AQUI añadí el botón Regresar -->
+            <div class="flex justify-content-between align-items-center mb-4">
+                <div class="header-left">
+                    <!-- Botón Regresar (navegación sin estado JSF que evita ViewExpired) -->
+                    <h:link outcome="/inicio" styleClass="regresar-button">
+                        <i class="pi pi-arrow-left"></i>
+                        <span>Regresar</span>
+                    </h:link>
+
+                    <!-- Título -->
+                    <h2 class="text-xl m-0">Lista de Usuarios</h2>
+                </div>
+
+                <!-- Botón Nuevo Usuarios (mantengo exactamente como tenías) -->
+                <p:commandButton value="Nuevo Usuarios"
+                                 icon="pi pi-plus"
+                                 class="p-button-success"
+                                 onclick="PF('dlgUsuario').show();"
+                                 actionListener="#{usuarioJsf.prepararNuevo}"
+                                 update=":formUsuario"/>
+            </div>
+
+            <!-- DataTable con card simple -->
+            <div class="bg-white border-round shadow-2">
+                <p:dataTable value="#{usuarioJsf.listaUsuarios}" var="ev"
+                             paginator="true" rows="10"
+                             styleClass="p-datatable-striped">
+
+                    <p:column headerText="ID">
+                        <h:outputText value="#{ev.idUsuario}"/>
+                    </p:column>
+
+                    <p:column headerText="Nombre del usuario">
+                        <h:outputText value="#{ev.nombre}"/>
+                    </p:column>
+
+                    <p:column headerText="apellido del usuario">
+                        <h:outputText value="#{ev.apellido}"/>
+                    </p:column>
+
+                    <p:column headerText="Email">
+                        <h:outputText value="#{ev.email}"/>
+                    </p:column>
+
+                    <p:column headerText="Contraseña">
+                        <h:outputText value="#{ev.password}"/>
+                    </p:column>
+
+                    <p:column headerText="Rol del usuario">
+                        <h:outputText value="#{ev.rol}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Acciones">
+                        <p:commandButton icon="pi pi-pencil"
+                                         title="Editar"
+                                         class="p-button-rounded p-button-text"
+                                         update=":formUsuario"
+                                         actionListener="#{usuarioJsf.prepararEdicion(ev)}"
+                                         oncomplete="PF('dlgUsuario').show()"/>
+                        <p:commandButton icon="pi pi-trash"
+                                         title="Eliminar"
+                                         class="p-button-rounded p-button-danger p-button-text ml-2"
+                                         onclick="PF('confirmEliminar').show();"
+                                         process="@this">
+                            <f:setPropertyActionListener target="#{usuarioJsf.idUsuario}" value="#{ev.idUsuario}"/>
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+
+        </h:form>
+
+        <!-- Dialogo mejorado pero simple -->
+        <p:dialog header="Usuario" widgetVar="dlgUsuario" modal="true" resizable="false" width="500">
+            <h:form id="formUsuario">
+                <div class="p-3">
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">Nombre</label>
+                        <p:inputText value="#{usuarioJsf.nombre}" required="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">Apellido</label>
+                        <p:inputTextarea value="#{usuarioJsf.apellido}" autoResize="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">Email</label>
+                        <p:inputTextarea value="#{usuarioJsf.email}" autoResize="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">Contraseña</label>
+                        <p:inputTextarea value="#{usuarioJsf.password}" autoResize="true" styleClass="w-full"/>
+                    </div>
+
+
+
+                    <div class="grid">
+                        <div class="col-6">
+                            <div class="field mb-3">
+                                <label class="font-semibold block mb-2">Rol</label>
+                                <h:selectOneMenu value="#{usuarioJsf.rol}" styleClass="w-full">
+                                    <f:selectItems value="#{usuarioJsf.usuariosDisponibles}" var="e" itemValue="#{e}" itemLabel="#{e.name()}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-content-end gap-2 pt-3">
+                        <p:commandButton value="Cancelar" type="button" class="p-button-secondary" onclick="PF('dlgUsuario').hide()"/>
+                        <p:commandButton value="Guardar"
+                                         actionListener="#{usuarioJsf.guardar}"
+                                         update=":formUsuarios :formUsuario"
+                                         class="p-button-success"
+                                         oncomplete="PF('dlgUsuario').hide()"/>
+                    </div>
+                </div>
+            </h:form>
+        </p:dialog>
+
+        <!-- Confirmación de eliminar -->
+        <p:confirmDialog widgetVar="confirmEliminar" header="Confirmación" message="¿Desea eliminar este usuario?"
+                         severity="warn">
+            <p:commandButton value="Sí" actionListener="#{usuarioJsf.eliminar}"
+                             update=":formUsuarios" oncomplete="PF('confirmEliminar').hide()"
+                             class="p-button-danger"/>
+            <p:commandButton value="No" onclick="PF('confirmEliminar').hide()" type="button" class="p-button-secondary"/>
+        </p:confirmDialog>
+    </div>
+
+</h:body>
+</html>

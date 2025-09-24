@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProyectoFnNexusApplication {
+public class ProyectoFinalApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProyectoFnNexusApplication.class, args);
+        SpringApplication.run(ProyectoFinalApplication.class, args);
+        System.out.println("Bienvenido al proyecto");
     }
 
 }
