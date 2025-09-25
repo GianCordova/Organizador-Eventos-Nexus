@@ -29,6 +29,7 @@ public interface RecursoMapper {
 
     // Modificación parcial
     @Mapping(source = "resourceName", target = "nombreRecurso")
+    @Mapping(source = "category", target = "categoria", qualifiedByName = "generarCategoria") // String -> CategoriaRecurso
     @Mapping(source = "stock", target = "stock")
     @Mapping(source = "rentalPrice", target = "precioAlquiler")
     void modificarEntityFromDto(ModificarRecursoDto mod, @MappingTarget RecursoEntity entity);

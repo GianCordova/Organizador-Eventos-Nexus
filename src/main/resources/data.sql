@@ -102,10 +102,7 @@ INSERT IGNORE INTO Recursos (nombreRecurso, categoria, stock, precioAlquiler) VA
 ('mesas_para_buffet', 'MOBILIARIO', 70, 6.50),
 ('carpa_8x8', 'COVERSANDSTRUCTURES', 9, 85.00),
 ('luces_focales', 'ILUMINACION', 30, 18.00),
-('mezcladora_de_audio', 'SOUNDANDMULTIMEDIA', 5, 110.00),
-('buffet_deluxe', 'KITCHENANDCATERING', 2, 600.00),
-('velas_decorativas', 'DECORACION', 90, 12.00),
-('trampolines', 'ENTRETENIMIENTO', 4, 100.00);
+('mezcladora_de_audio', 'SOUNDANDMULTIMEDIA', 5, 110.00);
 
 -- Proveedores (50)
 INSERT IGNORE INTO proveedores (nombreProveedor, servicio, contacto) VALUES
@@ -154,7 +151,14 @@ INSERT IGNORE INTO proveedores (nombreProveedor, servicio, contacto) VALUES
 ('audio_maximo', 'Sonido y multimedia', 'ventas@audiomaximo.com'),
 ('flores_del_campo', 'Decoración', 'info@floresdelcampo.com'),
 ('catering_eventos', 'Cocina y catering', 'contacto@cateringeventos.com'),
-('luces_iluminacion', 'Iluminación profesional', 'ventas@lucesiluminacion.com');
+('luces_iluminacion', 'Iluminación profesional', 'ventas@lucesiluminacion.com'),
+('sonido_proaudio', 'Sonido y multimedia', 'info@sonidoproaudio.com'),
+('decoracion_elegante', 'Decoración', 'ventas@decoracionelegante.com'),
+('catering_gourmetplus', 'Cocina y catering', 'contacto@cateringgourmetplus.com'),
+('ilumina_show', 'Iluminación profesional', 'info@iluminashow.com'),
+('mobiliario_eventplus', 'Alquiler de mobiliario', 'ventas@mobiliarioeventplus.com'),
+('proyeccion_digital', 'Sistemas de proyección', 'contacto@proyecciondigital.com'),
+('audio_eventplus', 'Sonido y multimedia', 'ventas@audioeventplus.com');
 
 -- Eventos (50)
 INSERT IGNORE INTO Eventos (nombreEvento, descripcion, fecha, lugar, estado, duracion, tipoEvento, costoEvento, idUsuario) VALUES
@@ -260,8 +264,7 @@ INSERT IGNORE INTO Invitados (nombre, apellido, correo, telefono, estadoAsistenc
 ('Elisa', 'Cortez', 'elisa.cortez@email.com', '555-7878', 'PENDIENTE', 46),
 ('Javier', 'Dominguez', 'javier.dominguez@email.com', '555-8080', 'CONFIRMADO', 47),
 ('Paula', 'Escobar', 'paula.escobar@email.com', '555-8282', 'RECHAZADO', 48),
-('Diego', 'Figueroa', 'diego.figueroa@email.com', '555-8484', 'CONFIRMADO', 49),
-('Natalia', 'Gil', 'natalia.gil@email.com', '555-8686', 'PENDIENTE', 50);
+('Diego', 'Figueroa', 'diego.figueroa@email.com', '555-8484', 'CONFIRMADO', 49);
 
 -- DetalleRecursos (50)
 INSERT IGNORE INTO DetalleRecursos (idEvento, idRecurso, cantidad) VALUES

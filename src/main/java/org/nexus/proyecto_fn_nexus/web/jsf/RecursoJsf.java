@@ -100,6 +100,7 @@ public class RecursoJsf implements Serializable {
         try {
             ModificarRecursoDto modificarRecursoDto = new ModificarRecursoDto(
                     this.nuevoRecurso.getResourceName(),
+                    this.nuevoRecurso.getCategory(),
                     this.nuevoRecurso.getStock(),
                     this.nuevoRecurso.getRentalPrice()
             );
