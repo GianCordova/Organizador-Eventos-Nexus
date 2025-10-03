@@ -17,21 +17,21 @@ public interface InvitadoMapper {
     @Mapping(source = "apellido", target = "apellido")
     @Mapping(source = "correo", target = "correo")
     @Mapping(source = "telefono", target = "telefono")
-    @Mapping(source = "estadoAsistencia", target = "estadoAsistencia", qualifiedByName = "generarEstado")
-    @Mapping(source = "idEvento", target = "idEvento")
+    @Mapping(source = "estadoAsistencia", target = "estadoAsistencia", qualifiedByName = "stringToEstadoAsistencia")
+    @Mapping(source = "idEvento.idEvento", target = "idEvento")
     InvitadoDto toDto(InvitadoEntity entity);
 
     List<InvitadoDto> toDto(Iterable<InvitadoEntity> entities);
 
     @InheritInverseConfiguration
-    @Mapping(source = "estadoAsistencia", target = "estadoAsistencia", qualifiedByName = "generarEstadoString")
+    @Mapping(source = "estadoAsistencia", target = "estadoAsistencia", qualifiedByName = "estadoAsistenciaToString")
     InvitadoEntity toEntity(InvitadoDto dto);
 
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "apellido", target = "apellido")
     @Mapping(source = "correo", target = "correo")
     @Mapping(source = "telefono", target = "telefono")
-    @Mapping(source = "estadoAsistencia", target = "estadoAsistencia", qualifiedByName = "generarEstadoString")
-    @Mapping(source = "idEvento", target = "idEvento")
+    @Mapping(source = "estadoAsistencia", target = "estadoAsistencia", qualifiedByName = "stringToEstadoAsistencia")
+    @Mapping(source = "idEvento", target = "idEvento.idEvento")
     void modificarEntityFromDto(ModInvitadoDto mod, @MappingTarget InvitadoEntity entity);
 }

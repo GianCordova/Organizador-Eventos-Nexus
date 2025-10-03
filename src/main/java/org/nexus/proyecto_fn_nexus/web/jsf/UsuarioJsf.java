@@ -43,12 +43,6 @@ public class UsuarioJsf implements Serializable {
 
     private boolean modoEdicion = false;
 
-    public Rol[] getusuariosDisponibles() {
-        return Rol.values();
-    }
-
-
-
     @PostConstruct
     public void init() {
         cargarUsuarios();
@@ -78,11 +72,11 @@ public class UsuarioJsf implements Serializable {
     public void prepararEdicion(UsuarioJsfDto usuario) {
         this.modoEdicion = true;
         this.idUsuario = usuario.getidUsuario();
-        this.nombre = usuario.getnombre();
-        this.apellido = usuario.getapellido();
-        this.email = usuario.getemail();
-        this.password = usuario.getpassword();
-        this.rol = usuario.getrol();
+        this.nombre = usuario.getNombre();
+        this.apellido = usuario.getApellido();
+        this.email = usuario.getEmail();
+        this.password = usuario.getPassword();
+        this.rol = usuario.getRol();
     }
 
     public void guardar() {
@@ -115,7 +109,6 @@ public class UsuarioJsf implements Serializable {
     }
 
 
-
     private void limpiarFormulario() {
         idUsuario = null;
         nombre = null;
@@ -126,36 +119,65 @@ public class UsuarioJsf implements Serializable {
     }
 
     // Getters y setters
-    public List<UsuarioJsfDto> getListaUsuarios() { return listaUsuarios; }
+    public List<UsuarioJsfDto> getListaUsuarios() {
+        return listaUsuarios;
+    }
 
-    public boolean isModoEdicion() { return modoEdicion; }
+    public boolean isModoEdicion() {
+        return modoEdicion;
+    }
 
-    public String getNombre() { return nombre; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public String getApellido() { return apellido; }
+    public String getApellido() {
+        return apellido;
+    }
 
-    public void setApellido(String apellido) { this.apellido = apellido; }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public void setPassword(String password) { this.password = password; }
-
-
-    public Rol getRol() { return rol; }
-
-    public void setRol(Rol rol) { this.rol = rol; }
-
-
-    public Long getIdUsuario() { return idUsuario; }
-
-    public void setIdUsuario(Long idUsuario) { this.idUsuario = idUsuario; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
+    public Rol getRol() {
+        return rol;
+    }
 
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Rol[] getusuariosDisponibles() {
+        return Rol.values();
+    }
 }

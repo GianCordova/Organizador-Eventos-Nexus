@@ -6,14 +6,14 @@ import org.nexus.proyecto_fn_nexus.dominio.exception.DetalleProveedorNoExisteExc
 import org.nexus.proyecto_fn_nexus.dominio.exception.DetalleProveedorYaExisteException;
 import org.nexus.proyecto_fn_nexus.persistence.entity.DetalleProveedorEntity;
 import org.nexus.proyecto_fn_nexus.persistence.mapper.DetalleProveedorMapper;
-import org.nexus.proyecto_fn_nexus.repository.DetalleProveedoresRepository;
+import org.nexus.proyecto_fn_nexus.repository.DetalleProveedorRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class DetalleProveedorEntityRepository implements DetalleProveedoresRepository {
+public class DetalleProveedorEntityRepository implements DetalleProveedorRepository {
 
     private final org.nexus.proyecto_fn_nexus.persistence.crud.CrudDetalleProveedorEntity crudDetalleProveedorEntity;
     private final DetalleProveedorMapper detalleProveedorMapper;
@@ -36,11 +36,6 @@ public class DetalleProveedorEntityRepository implements DetalleProveedoresRepos
 
     @Override
     public DetalleProveedorDto guardarDetalleProveedor(DetalleProveedorDto detalleProveedorDto) {
-        // Verificamos si el detalle de proveedor ya existe en el sistema
-        if (this.crudDetalleProveedorEntity.countDetalleProvedoresEntitiesByObservaciones(detalleProveedorDto.observaciones().toString()) != null) {
-            throw new DetalleProveedorYaExisteException(detalleProveedorDto.toString());
-        }
-
         // Convertimos el DTO a una entidad
         DetalleProveedorEntity detalleProveedorEntity = this.detalleProveedorMapper.toEntity(detalleProveedorDto);
 
@@ -50,6 +45,7 @@ public class DetalleProveedorEntityRepository implements DetalleProveedoresRepos
         // Retornamos la entidad guardada como DTO
         return this.detalleProveedorMapper.toDto(detalleProveedorEntity);
     }
+
 
     @Override
     public DetalleProveedorDto modificarDetalleProveedor(Long idDetalleProveedor, ModDetalleProveedorDto modDetalleProveedorDto) {

@@ -41,16 +41,6 @@ public class EventoJsf implements Serializable {
 
     private boolean modoEdicion = false;
 
-    public Estado[] getEstadosDisponibles() {
-        return Estado.values();
-    }
-// En EventoJsf
-
-    public TipoEvento[] getTiposEventoDisponibles() {
-        return TipoEvento.values();
-    }
-
-
     @PostConstruct
     public void init() {
         cargarEventos();
@@ -128,7 +118,6 @@ public class EventoJsf implements Serializable {
     }
 
 
-
     private void limpiarFormulario() {
         idEvento = null;
         nombreEvento = null;
@@ -143,26 +132,99 @@ public class EventoJsf implements Serializable {
     }
 
     // Getters y setters
-    public List<EventoJsfDto> getListaEventos() { return listaEventos; }
-    public boolean isModoEdicion() { return modoEdicion; }
-    public String getNombreEvento() { return nombreEvento; }
-    public void setNombreEvento(String nombreEvento) { this.nombreEvento = nombreEvento; }
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-    public LocalDate getFecha() { return fecha; }
-    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
-    public String getLugar() { return lugar; }
-    public void setLugar(String lugar) { this.lugar = lugar; }
-    public Estado getEstado() { return estado; }
-    public void setEstado(Estado estado) { this.estado = estado; }
-    public LocalTime getDuracion() { return duracion; }
-    public void setDuracion(LocalTime duracion) { this.duracion = duracion; }
-    public TipoEvento getTipoEvento() { return tipoEvento; }
-    public void setTipoEvento(TipoEvento tipoEvento) { this.tipoEvento = tipoEvento; }
-    public BigDecimal getCostoEvento() { return costoEvento; }
-    public void setCostoEvento(BigDecimal costoEvento) { this.costoEvento = costoEvento; }
-    public Long getIdUsuario() { return idUsuario; }
-    public void setIdUsuario(Long idUsuario) { this.idUsuario = idUsuario; }
-    public Long getIdEvento() {return idEvento;}
-    public void setIdEvento(Long idEvento) {this.idEvento = idEvento;}
+    public List<EventoJsfDto> getListaEventos() {
+        return listaEventos;
+    }
+
+    public boolean isModoEdicion() {
+        return modoEdicion;
+    }
+
+    public String getNombreEvento() {
+        return nombreEvento;
+    }
+
+    public void setNombreEvento(String nombreEvento) {
+        this.nombreEvento = nombreEvento;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public LocalTime getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(LocalTime duracion) {
+        this.duracion = duracion;
+    }
+
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public void setTipoEvento(TipoEvento tipoEvento) {
+        this.tipoEvento = tipoEvento;
+    }
+
+    public BigDecimal getCostoEvento() {
+        return costoEvento;
+    }
+
+    public void setCostoEvento(BigDecimal costoEvento) {
+        this.costoEvento = costoEvento;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Long getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(Long idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    public Estado[] getEstadosDisponibles() {
+        return Estado.values();
+    }
+
+    public TipoEvento[] getTiposEventoDisponibles() {
+        return TipoEvento.values();
+    }
 }

@@ -4,36 +4,36 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Named;
 import org.nexus.proyecto_fn_nexus.dominio.CategoriaRecurso;
 
-public interface CategoriaRecursoMapper {
+public class CategoriaRecursoMapper {
 
-    @Named("generarCategory")
-    public static CategoriaRecurso generarCategory(String categoria) {
+    @Named("stringToCategoria")
+    public static CategoriaRecurso stringToCategoria(String categoria) {
         if (categoria == null) return null;
-        return switch (categoria.toUpperCase()) {
-            case "MOBILIARIO" -> CategoriaRecurso.MOBILIARIO;
-            case "COVERSANDSTRUCTURES" -> CategoriaRecurso.COVERSANDSTRUCTURES;
-            case "ILUMINACION" -> CategoriaRecurso.ILUMINACION;
-            case "SOUNDANDMULTIMEDIA" -> CategoriaRecurso.SOUNDANDMULTIMEDIA;
-            case "DECORACION" -> CategoriaRecurso.DECORACION;
-            case "KITCHENANDCATERING" -> CategoriaRecurso.KITCHENANDCATERING;
-            case "ENTRETENIMIENTO" -> CategoriaRecurso.ENTRETENIMIENTO;
-            case "OTRO" -> CategoriaRecurso.OTRO;
+        return switch (categoria.toLowerCase()) {
+            case "mobiliario" -> CategoriaRecurso.mobiliario;
+            case "cubiertasyestructuras" -> CategoriaRecurso.cubiertasyestructuras;
+            case "iluminacion" -> CategoriaRecurso.iluminacion;
+            case "sonidoymultimendia" -> CategoriaRecurso.sonidoymultimendia;
+            case "decoracion" -> CategoriaRecurso.decoracion;
+            case "cocinaycatering" -> CategoriaRecurso.cocinaycatering;
+            case "entretenimiento" -> CategoriaRecurso.entretenimiento;
+            case "otro" -> CategoriaRecurso.otro;
             default -> null;
         };
     }
 
-    @Named("generarCategoria")
-    public static String generarCategoria(CategoriaRecurso category) {
-        if (category == null) return null;
-        return switch (category) {
-            case MOBILIARIO -> "MOBILIARIO";
-            case COVERSANDSTRUCTURES -> "COVERSANDSTRUCTURES";
-            case ILUMINACION -> "ILUMINACION";
-            case SOUNDANDMULTIMEDIA -> "SOUNDANDMULTIMEDIA";
-            case DECORACION -> "DECORACION";
-            case KITCHENANDCATERING -> "KITCHENANDCATERING";
-            case ENTRETENIMIENTO -> "ENTRETENIMIENTO";
-            case OTRO -> "OTRO";
+    @Named("categoriaToString")
+    public static String categoriaToString(CategoriaRecurso categoria) {
+        if (categoria == null) return null;
+        return switch (categoria) {
+            case mobiliario -> "mobiliario";
+            case cubiertasyestructuras -> "cubiertasyestructuras";
+            case iluminacion -> "iluminacion";
+            case sonidoymultimendia -> "sonidoymultimendia";
+            case decoracion -> "decoracion";
+            case cocinaycatering -> "cocinaycatering";
+            case entretenimiento -> "entretenimiento";
+            case otro -> "otro";
         };
     }
 }

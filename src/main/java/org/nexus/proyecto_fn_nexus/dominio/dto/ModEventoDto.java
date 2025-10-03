@@ -1,14 +1,16 @@
 package org.nexus.proyecto_fn_nexus.dominio.dto;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.FutureOrPresent;
 import org.nexus.proyecto_fn_nexus.dominio.Estado;
 import org.nexus.proyecto_fn_nexus.dominio.TipoEvento;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public record ModEventoDto (
+public record ModEventoDto(
+
         @NotNull(message = "El nombre del evento no puede estar vacío")
         String nombreEvento,
 
@@ -37,4 +39,5 @@ public record ModEventoDto (
 
         @NotNull(message = "El id del usuario organizador es obligatorio")
         Long idUsuario
+
 ) {}

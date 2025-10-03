@@ -30,7 +30,7 @@ public class InvitadoEntityRepository implements InvitadoRepository {
     }
 
     @Override
-    public InvitadoDto buscarPorId(Integer idInvitado) {
+    public InvitadoDto buscarPorId(Long idInvitado) {
         return this.invitadoMapper.toDto(this.crudInvitadoEntity.findById(idInvitado).orElse(null));
     }
 
@@ -47,26 +47,19 @@ public class InvitadoEntityRepository implements InvitadoRepository {
     }
 
     @Override
-    public InvitadoDto modificarInvitado(Integer  idInvitado, ModInvitadoDto modInvitado) {
+    public InvitadoDto modificarInvitado(Long  idInvitado, ModInvitadoDto modInvitado) {
         InvitadoEntity invitado = this.crudInvitadoEntity.findById(idInvitado).orElse(null);
 
         if (invitado == null) {
             throw new InvitadoNoExisteException(idInvitado);
         }
 
-        invitado.setNombre(modInvitado.nombre());
-        invitado.setApellido(modInvitado.apellido());
-        invitado.setCorreo(modInvitado.correo());
-        invitado.setTelefono(modInvitado.telefono());
-        invitado.setEstadoAsistencia(modInvitado.estadoAsistencia());
-        invitado.setIdEvento(modInvitado.idEvento());
-
         this.invitadoMapper.modificarEntityFromDto(modInvitado, invitado);
         return this.invitadoMapper.toDto(this.crudInvitadoEntity.save(invitado));
     }
 
     @Override
-    public void eliminarInvitado(Integer idInvitado) {
+    public void eliminarInvitado(Long idInvitado) {
         this.crudInvitadoEntity.deleteById(idInvitado);
     }
 }

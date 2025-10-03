@@ -39,7 +39,7 @@ public class InvitadoController {
     )
     public ResponseEntity<InvitadoDto> buscarPorId
             (@Parameter(description = "Identificador del invitado", example = "8")
-             @PathVariable Integer idInvitado) {
+             @PathVariable Long idInvitado) {
         return ResponseEntity.ok(this.invitadoService.buscarPorId(idInvitado));
     }
 
@@ -49,12 +49,12 @@ public class InvitadoController {
     }
 
     @PutMapping("{idInvitado}")
-    public ResponseEntity<InvitadoDto> modificarInvitado(@PathVariable Integer idInvitado, @RequestBody ModInvitadoDto modificarInvitado) {
+    public ResponseEntity<InvitadoDto> modificarInvitado(@PathVariable Long idInvitado, @RequestBody ModInvitadoDto modificarInvitado) {
         return ResponseEntity.ok(this.invitadoService.modificarInvitado(idInvitado, modificarInvitado));
     }
 
     @DeleteMapping("{idInvitado}")
-    public ResponseEntity<Void> eliminarInvitado(@PathVariable Integer idInvitado) {
+    public ResponseEntity<Void> eliminarInvitado(@PathVariable Long idInvitado) {
         this.invitadoService.eliminarInvitado(idInvitado);
         return ResponseEntity.ok().build();
     }

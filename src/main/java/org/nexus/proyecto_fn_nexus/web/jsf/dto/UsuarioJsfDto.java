@@ -13,10 +13,9 @@ public class UsuarioJsfDto {
     private String password;
     private Rol rol;
 
-    
 
     public UsuarioJsfDto(Long idUsuario, String nombre, String apellido,
-                        String email, String password,Rol rol) {
+                         String email, String password, Rol rol) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -24,16 +23,30 @@ public class UsuarioJsfDto {
         this.password = password;
         this.rol = rol;
 
-        
+
     }
 
-    // Getters convencionales para JSF
-    public Long getidUsuario() { return idUsuario; }
-    public String getnombre() { return nombre; }
-    public String getapellido() { return apellido; }
-    public String getemail() { return email; }
-    public String getpassword() { return password; }
-    public Rol getrol() { return rol; }
+    public Long getidUsuario() {
+        return idUsuario;
+    }
 
-    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
 }

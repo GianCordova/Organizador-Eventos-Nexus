@@ -1,7 +1,10 @@
 package org.nexus.proyecto_fn_nexus.web.jsf;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import org.nexus.proyecto_fn_nexus.dominio.Estado;
+import org.nexus.proyecto_fn_nexus.dominio.EstadoAsistencia;
 import org.nexus.proyecto_fn_nexus.dominio.dto.InvitadoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModInvitadoDto;
 import org.nexus.proyecto_fn_nexus.dominio.service.InvitadoService;
@@ -22,20 +25,15 @@ public class InvitadoJsf implements Serializable {
     private InvitadoDto invitadoSeleccionado;
 
     // Para creación/edición
-    private Integer idInvitado;
+    private Long idInvitado;
     private String nombre;
     private String apellido;
     private String correo;
     private String telefono;
-    private String estadoAsistencia; // ahora String
-    private Integer idEvento;
+    private EstadoAsistencia estadoAsistencia; // ahora String
+    private Long idEvento;
 
     private boolean modoEdicion = false;
-
-    public String[] getEstadosDisponibles() {
-        // Si quieres, puedes definir un array de Strings fijos o tomarlo de un enum
-        return new String[] {"PENDIENTE", "CONFIRMADO", "RECHAZADO"};
-    }
 
     @PostConstruct
     public void init() {
@@ -46,13 +44,13 @@ public class InvitadoJsf implements Serializable {
         List<InvitadoDto> invitados = invitadoService.obtenerTodo();
         this.listaInvitados = invitados.stream()
                 .map(inv -> new InvitadoJsfDto(
-                        inv.idInvitado(),        // Integer
+                        inv.idInvitado(),
                         inv.nombre(),
                         inv.apellido(),
                         inv.correo(),
                         inv.telefono(),
-                        inv.estadoAsistencia(),  // String
-                        inv.idEvento()           // Integer
+                        inv.estadoAsistencia(),
+                        inv.idEvento()
                 ))
                 .toList();
     }
@@ -110,20 +108,71 @@ public class InvitadoJsf implements Serializable {
     }
 
     // Getters y setters
-    public List<InvitadoJsfDto> getListaInvitados() { return listaInvitados; }
-    public boolean isModoEdicion() { return modoEdicion; }
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
-    public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
-    public String getTelefono() { return telefono; }
-    public void setTelefono(String telefono) { this.telefono = telefono; }
-    public String getEstadoAsistencia() { return estadoAsistencia; }
-    public void setEstadoAsistencia(String estadoAsistencia) { this.estadoAsistencia = estadoAsistencia; }
-    public Integer getIdEvento() { return idEvento; }
-    public void setIdEvento(Integer idEvento) { this.idEvento = idEvento; }
-    public Integer getIdInvitado() { return idInvitado; }
-    public void setIdInvitado(Integer idInvitado) { this.idInvitado = idInvitado; }
+    public List<InvitadoJsfDto> getListaInvitados() {
+        return listaInvitados;
+    }
+
+    public boolean isModoEdicion() {
+        return modoEdicion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public EstadoAsistencia getEstadoAsistencia() {
+        return estadoAsistencia;
+    }
+
+    public void setEstadoAsistencia(EstadoAsistencia estadoAsistencia) {
+        this.estadoAsistencia = estadoAsistencia;
+    }
+
+    public Long getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(Long idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    public Long getIdInvitado() {
+        return idInvitado;
+    }
+
+    public void setIdInvitado(Long idInvitado) {
+        this.idInvitado = idInvitado;
+    }
+
+    public EstadoAsistencia[] getEstadosDisponibles() {
+        return EstadoAsistencia.values();
+    }
 }

@@ -33,7 +33,9 @@
         .button-grid .recursos-button,
         .button-grid .eventos-button,
         .button-grid .invitados-button,
-        .button-grid .proveedores-button {
+        .button-grid .proveedores-button,
+        .button-grid .detalle-recursos-button,
+        .button-grid .detalle-proveedores-button {
             padding: 40px 60px;
             font-size: 22px;
             font-weight: bold;
@@ -51,7 +53,9 @@
         .button-grid .recursos-button:hover,
         .button-grid .eventos-button:hover,
         .button-grid .invitados-button:hover,
-        .button-grid .proveedores-button:hover {
+        .button-grid .proveedores-button:hover,
+        .button-grid .detalle-recursos-button:hover,
+        .button-grid .detalle-proveedores-button:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
         }
@@ -59,7 +63,9 @@
         .recursos-button { background-color: #2ecc71; }
         .eventos-button { background-color: #e74c3c; }
         .invitados-button { background-color: #9b59b6; }
-        .proveedores-button { background-color: #f39c12; grid-column: span 2; }
+        .proveedores-button { background-color: #f39c12; }
+        .detalle-recursos-button { background-color: #1abc9c; }
+        .detalle-proveedores-button { background-color: #d35400; grid-column: span 2; }
     </style>
 </h:head>
 <h:body>
@@ -67,9 +73,11 @@
     <h:form class="button-grid">
         <h:commandButton value="Gestión de Usuarios" styleClass="usuarios-button" action="usuarios.xhtml" />
         <h:commandButton value="Gestión de Recursos" styleClass="recursos-button" action="recursos.xhtml" />
-        <h:commandButton value="Gestión de Proveedores" styleClass="eventos-button" action="proveedores.xhtml" />
+        <h:commandButton value="Gestión de Proveedores" styleClass="proveedores-button" action="proveedores.xhtml" />
         <h:commandButton value="Gestión de Invitados" styleClass="invitados-button" action="invitados.xhtml" />
-        <h:commandButton value="Gestión de Eventos" styleClass="proveedores-button" action="eventos.xhtml" />
+        <h:commandButton value="Gestión de Eventos" styleClass="eventos-button" action="eventos.xhtml" />
+        <h:commandButton value="Gestión de Detalle de Recursos" styleClass="detalle-recursos-button" action="detalleRecurso.xhtml" />
+        <h:commandButton value="Gestión de Detalle de Proveedores" styleClass="detalle-proveedores-button" action="detalleProveedor.xhtml" />
     </h:form>
 </h:body>
 </html>

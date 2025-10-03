@@ -5,6 +5,6 @@ public class DetalleProveedorYaExisteException extends RuntimeException {
 
   // Constructor que recibe el nombre del detalle de proveedor que ya existe
   public DetalleProveedorYaExisteException(String nombreProveedor) {
-    super("El detalle de proveedor: \"" + nombreProveedor + "\" ya existe.");
+    super("El detalle de proveedor coon la observación: \"" + nombreProveedor + "\" ya existe.");
   }
 }

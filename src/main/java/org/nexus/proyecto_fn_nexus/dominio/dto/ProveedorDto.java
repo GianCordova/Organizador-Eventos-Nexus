@@ -14,5 +14,4 @@ public record ProveedorDto(
 
         @NotNull(message = "El email del proveedor es obligatorio")
         String contacto
-
 ) {}

@@ -76,14 +76,12 @@ public class ProveedorJsf implements Serializable {
             proveedorService.guardarProveedor(nuevo);
         }
         cargarProveedores();
-        limpiarFormulario();
     }
 
     public void eliminar() {
         if (idProveedor != null) {
             proveedorService.eliminarProveedor(idProveedor);
             cargarProveedores();
-            limpiarFormulario();
         }
     }
 

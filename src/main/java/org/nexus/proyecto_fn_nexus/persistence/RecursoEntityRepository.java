@@ -31,28 +31,28 @@ public class RecursoEntityRepository implements RecursoRepository {
     }
 
     @Override
-    public RecursoDto buscarPorId(Integer idRecurso) {
+    public RecursoDto buscarPorId(Long idRecurso) {
         return this.recursoMapper.toDto(this.crudRecursoEntity.findById(idRecurso).orElse(null));
     }
 
     @Override
     public RecursoDto guardarRecurso(RecursoDto recursoDto) {
-        if (this.crudRecursoEntity.findFirstByNombreRecurso(recursoDto.resourceName()) != null){
-        throw new RecursoYaExisteException(recursoDto.resourceName());
+        if (this.crudRecursoEntity.findFirstByNombreRecurso(recursoDto.nombreRecurso()) != null){
+        throw new RecursoYaExisteException(recursoDto.nombreRecurso());
         }
         RecursoEntity recurso = new RecursoEntity();
         recurso = this.recursoMapper.toEntity(recursoDto);
-        recurso.setNombreRecurso(recursoDto.resourceName());
+        recurso.setNombreRecurso(recursoDto.nombreRecurso());
         this.crudRecursoEntity.save(recurso);
         return this.recursoMapper.toDto(recurso);
     }
 
     @Override
-    public RecursoDto modificarRecurso(Integer idRecurso, ModificarRecursoDto modRecurso) {
+    public RecursoDto modificarRecurso(Long idRecurso, ModificarRecursoDto modRecurso) {
         RecursoEntity recurso = this.crudRecursoEntity.findById(idRecurso).orElse(null);
-        recurso.setNombreRecurso(modRecurso.resourceName());
+        recurso.setNombreRecurso(modRecurso.nombreRecurso());
         recurso.setStock(modRecurso.stock());
-        recurso.setPrecioAlquiler(modRecurso.rentalPrice());
+        recurso.setPrecioAlquiler(modRecurso.precioAlquiler());
 
         if (recurso == null) {
             throw new RecursoNoExisteException(idRecurso);
@@ -63,7 +63,7 @@ public class RecursoEntityRepository implements RecursoRepository {
     }
 
     @Override
-    public void eliminarRecurso(Integer idRecurso) {
+    public void eliminarRecurso(Long idRecurso) {
         RecursoEntity recurso = this.crudRecursoEntity.findById(idRecurso).orElse(null);
 
         if (recurso == null) {

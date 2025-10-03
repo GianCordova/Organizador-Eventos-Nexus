@@ -20,7 +20,7 @@ public class DetalleRecursoService {
         return this.detalleRecursoRepository.obtenerTodo();
     }
 
-    public DetalleRecursoDto buscarPorId(Integer idDetalleRecurso){
+    public DetalleRecursoDto buscarPorId(Long idDetalleRecurso){
         return this.detalleRecursoRepository.buscarPorId(idDetalleRecurso.longValue());
     }
 
@@ -35,6 +35,4 @@ public class DetalleRecursoService {
     public void eliminarDetalleRecurso(Long idDetalleRecurso){
         this.detalleRecursoRepository.eliminarDetalleRecurso(idDetalleRecurso);
     }
-
-
 }

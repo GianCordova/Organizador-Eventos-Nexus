@@ -6,7 +6,7 @@ import org.nexus.proyecto_fn_nexus.dominio.dto.ModDetalleProveedorDto;
 
 import java.util.List;
 
-public interface DetalleProveedoresRepository {
+public interface DetalleProveedorRepository {
 
     List<DetalleProveedorDto> obtenerTodo();
 

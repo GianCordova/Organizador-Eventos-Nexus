@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestión de Detalle de Proveedores</title>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-light.css"/>
+
+    <style>
+        .regresar-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3498db;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.12);
+            border: none;
+            cursor: pointer;
+        }
+        .regresar-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+        }
+        .regresar-button i {
+            font-size: 1.1rem;
+        }
+        .header-left { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+    </style>
+</h:head>
+<h:body class="bg-gray-50">
+
+    <div class="bg-primary text-white p-4 mb-4">
+        <h1 class="text-3xl font-bold m-0">
+            Gestión de Detalle de Proveedores
+        </h1>
+    </div>
+
+    <div class="p-4">
+        <h:form id="formDetalleProveedores">
+            <p:growl id="messages" showDetail="true"/>
+
+            <div class="flex justify-content-between align-items-center mb-4">
+                <div class="header-left">
+                    <h:link outcome="/inicio" styleClass="regresar-button">
+                        <i class="pi pi-arrow-left"></i>
+                        <span>Regresar</span>
+                    </h:link>
+                    <h2 class="text-xl m-0">Lista de Detalle de Proveedores</h2>
+                </div>
+
+                <p:commandButton value="Nuevo Detalle" icon="pi pi-plus" class="p-button-success"
+                                 onclick="PF('dlgDetalleProveedor').show();"
+                                 actionListener="#{detalleProveedorJsf.prepararNuevo}"
+                                 update=":formDetalleProveedor"/>
+            </div>
+
+            <div class="bg-white border-round shadow-2">
+                <p:dataTable value="#{detalleProveedorJsf.listaDetalleProveedores}" var="dp"
+                             paginator="true" rows="10" styleClass="p-datatable-striped">
+
+                    <p:column headerText="ID">
+                        <h:outputText value="#{dp.idDetalleProveedor}"/>
+                    </p:column>
+
+                    <p:column headerText="ID Evento">
+                        <h:outputText value="#{dp.idEvento}"/>
+                    </p:column>
+
+                    <p:column headerText="ID Proveedor">
+                        <h:outputText value="#{dp.idProveedor}"/>
+                    </p:column>
+
+                    <p:column headerText="Costo">
+                        <h:outputText value="#{dp.costo}">
+                            <f:convertNumber type="currency" currencySymbol="Q"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="Observaciones">
+                        <h:outputText value="#{dp.observaciones}"/>
+                    </p:column>
+
+                    <p:column headerText="Acciones">
+                        <p:commandButton icon="pi pi-pencil" title="Editar"
+                                         class="p-button-rounded p-button-text"
+                                         update=":formDetalleProveedor"
+                                         actionListener="#{detalleProveedorJsf.prepararEdicion(dp)}"
+                                         oncomplete="PF('dlgDetalleProveedor').show()"/>
+                        <p:commandButton icon="pi pi-trash" title="Eliminar"
+                                         class="p-button-rounded p-button-danger p-button-text ml-2"
+                                         onclick="PF('confirmEliminar').show();" process="@this">
+                            <f:setPropertyActionListener target="#{detalleProveedorJsf.idDetalleProveedor}" value="#{dp.idDetalleProveedor}"/>
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+        </h:form>
+
+        <!-- Dialogo -->
+        <p:dialog header="Detalle Proveedor" widgetVar="dlgDetalleProveedor" modal="true" resizable="false" width="400">
+            <h:form id="formDetalleProveedor">
+                <div class="p-3">
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">ID Evento</label>
+                        <p:inputText value="#{detalleProveedorJsf.idEvento}" required="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">ID Proveedor</label>
+                        <p:inputText value="#{detalleProveedorJsf.idProveedor}" required="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">Costo</label>
+                        <p:inputNumber value="#{detalleProveedorJsf.costo}" minValue="0" required="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="field mb-3">
+                        <label class="font-semibold block mb-2">Observaciones</label>
+                        <p:inputTextarea value="#{detalleProveedorJsf.observaciones}" autoResize="true" styleClass="w-full"/>
+                    </div>
+
+                    <div class="flex justify-content-end gap-2 pt-3">
+                        <p:commandButton value="Cancelar" type="button" class="p-button-secondary" onclick="PF('dlgDetalleProveedor').hide()"/>
+                        <p:commandButton value="Guardar"
+                                         actionListener="#{detalleProveedorJsf.guardar}"
+                                         update=":formDetalleProveedores :formDetalleProveedor"
+                                         class="p-button-success"
+                                         oncomplete="PF('dlgDetalleProveedor').hide()"/>
+                    </div>
+                </div>
+            </h:form>
+        </p:dialog>
+
+        <!-- Confirmación de eliminar -->
+        <p:confirmDialog widgetVar="confirmEliminar" header="Confirmación" message="¿Desea eliminar este detalle de proveedor?"
+                         severity="warn">
+            <p:commandButton value="Sí" actionListener="#{detalleProveedorJsf.eliminar}"
+                             update=":formDetalleProveedores" oncomplete="PF('confirmEliminar').hide()"
+                             class="p-button-danger"/>
+            <p:commandButton value="No" onclick="PF('confirmEliminar').hide()" type="button" class="p-button-secondary"/>
+        </p:confirmDialog>
+
+    </div>
+
+</h:body>
+</html>

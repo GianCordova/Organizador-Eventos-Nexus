@@ -20,7 +20,7 @@ public class RecursoService {
         return this.recursoRepository.obtenerTodo();
     }
 
-    public RecursoDto buscarPorId(Integer idRecurso){
+    public RecursoDto buscarPorId(Long idRecurso){
         return this.recursoRepository.buscarPorId(idRecurso);
     }
 
@@ -29,11 +29,11 @@ public class RecursoService {
         return this.recursoRepository.guardarRecurso(recursoDto);
     }
 
-    public RecursoDto modificarRecurso(Integer idRecurso, ModificarRecursoDto modRecursoDto){
+    public RecursoDto modificarRecurso(Long idRecurso, ModificarRecursoDto modRecursoDto){
         return this.recursoRepository.modificarRecurso(idRecurso, modRecursoDto);
     }
 
-    public void eliminarRecurso(Integer idRecurso){
+    public void eliminarRecurso(Long idRecurso){
         this.recursoRepository.eliminarRecurso(idRecurso);
     }
 }

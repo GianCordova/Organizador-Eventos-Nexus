@@ -34,15 +34,43 @@ public class EventoJsfDto {
         this.idUsuario = idUsuario;
     }
 
-    // Getters convencionales para JSF
-    public Long getIdEvento() { return idEvento; }
-    public String getNombreEvento() { return nombreEvento; }
-    public String getDescripcion() { return descripcion; }
-    public LocalDate getFecha() { return fecha; }
-    public String getLugar() { return lugar; }
-    public Estado getEstado() { return estado; }
-    public LocalTime getDuracion() { return duracion; }
-    public TipoEvento getTipoEvento() { return tipoEvento; }
-    public BigDecimal getCostoEvento() { return costoEvento; }
-    public Long getIdUsuario() { return idUsuario; }
+    public Long getIdEvento() {
+        return idEvento;
+    }
+
+    public String getNombreEvento() {
+        return nombreEvento;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public LocalTime getDuracion() {
+        return duracion;
+    }
+
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public BigDecimal getCostoEvento() {
+        return costoEvento;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
 }

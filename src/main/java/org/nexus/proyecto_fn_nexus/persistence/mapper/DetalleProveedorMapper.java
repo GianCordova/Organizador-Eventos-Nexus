@@ -12,6 +12,9 @@ public interface DetalleProveedorMapper {
 
     @Mapping(source = "evento.idEvento", target = "idEvento")
     @Mapping(source = "proveedor.idProveedor", target = "idProveedor")
+    @Mapping(source = "costo", target = "costo")
+    @Mapping(source = "observaciones", target = "observaciones")
+
     DetalleProveedorDto toDto(DetalleProveedorEntity entity);
 
     List<DetalleProveedorDto> toDto(Iterable<DetalleProveedorEntity> entities);
@@ -21,5 +24,7 @@ public interface DetalleProveedorMapper {
 
     @Mapping(source = "idEvento", target = "evento.idEvento")
     @Mapping(source = "idProveedor", target = "proveedor.idProveedor")
+    @Mapping(source = "costo", target = "costo")
+    @Mapping(source = "observaciones", target = "observaciones")
     void actualizarEntityDesdeDto(ModDetalleProveedorDto mod, @MappingTarget DetalleProveedorEntity entity);
 }

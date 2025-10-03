@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.nexus.proyecto_fn_nexus.dominio.dto.DetalleProveedorDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModDetalleProveedorDto;
-import org.nexus.proyecto_fn_nexus.dominio.service.DetalleProveedoresService;
+import org.nexus.proyecto_fn_nexus.dominio.service.DetalleProveedorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +20,9 @@ import java.util.List;
 @Tag(name = "Detalle Proveedores", description = "Operaciones CRUD de los proveedores asignados a eventos")
 public class DetalleProveedorController {
 
-    private final DetalleProveedoresService detalleProveedorService;
+    private final DetalleProveedorService detalleProveedorService;
 
-    public DetalleProveedorController(DetalleProveedoresService detalleProveedorService) {
+    public DetalleProveedorController(DetalleProveedorService detalleProveedorService) {
         this.detalleProveedorService = detalleProveedorService;
     }
 

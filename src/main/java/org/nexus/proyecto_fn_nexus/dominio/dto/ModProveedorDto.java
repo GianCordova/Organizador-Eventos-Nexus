@@ -12,7 +12,4 @@ public record ModProveedorDto(
 
         @NotNull(message = "El email del proveedor es obligatorio")
         String contacto
-
-
-
 ) {}

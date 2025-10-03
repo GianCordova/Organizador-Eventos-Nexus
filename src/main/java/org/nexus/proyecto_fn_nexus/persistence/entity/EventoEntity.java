@@ -1,10 +1,18 @@
 package org.nexus.proyecto_fn_nexus.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 import org.nexus.proyecto_fn_nexus.dominio.Estado;
 import org.nexus.proyecto_fn_nexus.dominio.TipoEvento;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,20 +41,19 @@ public class EventoEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado", length = 20, nullable = false)
-    private Estado estado; // pendiente, en progreso, completada
+    private Estado estado;
 
     @Column(name = "duracion", nullable = false)
     private LocalTime duracion;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipoEvento", length = 20, nullable = false)
-    private TipoEvento tipoEvento; // social, corporativo, cultural, recreativo, otro
+    private TipoEvento tipoEvento;
 
     @Column(name = "costoEvento", precision = 10, scale = 2, nullable = false)
     private BigDecimal costoEvento;
 
-    // Relación con Usuario (organizador)
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
-    private UsuarioEntity usuario;
+    private UsuarioEntity idUsuario;
 }

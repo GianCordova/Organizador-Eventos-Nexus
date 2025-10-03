@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Gestión de Recursos</title>
     <link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css"/>
     <link rel="stylesheet" href="https://unpkg.com/primeflex/themes/primeone-light.css"/>
 
-    <!-- Estilo para botón regresar -->
     <style>
         .regresar-button {
             display: inline-flex;
@@ -23,7 +22,6 @@
             box-shadow: 0 6px 10px rgba(0,0,0,0.12);
             border: none;
             cursor: pointer;
-            margin-bottom: 15px;
         }
         .regresar-button:hover {
             transform: translateY(-3px);
@@ -32,83 +30,77 @@
         .regresar-button i {
             font-size: 1.1rem;
         }
-        .header-left { display:flex; align-items:center; gap:12px; }
+        .header-left { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
     </style>
 </h:head>
 <h:body class="bg-gray-50">
-    <!-- Header simple -->
+
+    <!-- Header -->
     <div class="bg-primary text-white p-4 mb-4">
-        <h1 class="text-3xl font-bold m-0">
-            Gestión de Recursos
-        </h1>
+        <h1 class="text-3xl font-bold m-0">Gestión de Recursos</h1>
     </div>
 
     <div class="p-4">
         <h:form id="formRecursos">
             <p:growl id="messages" showDetail="true"/>
 
-            <!-- Encabezado de la lista: AQUI añadí el botón Regresar -->
             <div class="flex justify-content-between align-items-center mb-4">
                 <div class="header-left">
-                    <!-- Botón Regresar (navegación sin estado JSF que evita ViewExpired) -->
                     <h:link outcome="/inicio" styleClass="regresar-button">
                         <i class="pi pi-arrow-left"></i>
                         <span>Regresar</span>
                     </h:link>
-
-                    <!-- Título -->
                     <h2 class="text-xl m-0">Lista de Recursos</h2>
                 </div>
 
-                <!-- Botón Nuevo Usuarios (mantengo exactamente como tenías) -->
                 <p:commandButton value="Nuevo Recurso"
                                  icon="pi pi-plus"
                                  class="p-button-success"
                                  onclick="PF('dlgRecurso').show();"
-                                 actionListener="#{recursoJsfController.getNuevoRecurso}"
+                                 actionListener="#{recursoJsf.prepararNuevo}"
                                  update=":formRecurso"/>
             </div>
-            <!-- DataTable para recursos -->
-            <div class="bg-white border-round shadow-2">
-                <p:dataTable value="#{recursoJsfController.listaRecursos}" var="recurso"
-                             paginator="true" rows="10" styleClass="p-datatable-striped">
 
-                    <p:column headerText="ID" style="width:5%">
-                        <h:outputText value="#{recurso.idRecurso}" />
+            <div class="bg-white border-round shadow-2">
+                <p:dataTable value="#{recursoJsf.listaRecursos}" var="r"
+                             paginator="true" rows="10"
+                             styleClass="p-datatable-striped">
+
+                    <p:column headerText="ID">
+                        <h:outputText value="#{r.idRecurso}"/>
                     </p:column>
 
                     <p:column headerText="Nombre">
-                        <h:outputText value="#{recurso.resourceName}" />
+                        <h:outputText value="#{r.nombreRecurso}"/>
                     </p:column>
 
                     <p:column headerText="Categoría">
-                        <h:outputText value="#{recurso.category}" />
+                        <h:outputText value="#{r.categoria}"/>
                     </p:column>
 
                     <p:column headerText="Stock">
-                        <h:outputText value="#{recurso.stock}" />
+                        <h:outputText value="#{r.stock}"/>
                     </p:column>
 
-                    <p:column headerText="Precio Alquiler">
-                        <h:outputText value="#{recurso.rentalPrice}">
+                    <p:column headerText="Precio">
+                        <h:outputText value="#{r.precioAlquiler}">
                             <f:convertNumber type="currency" currencySymbol="Q"/>
                         </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Acciones" style="width:15%">
+                    <p:column headerText="Acciones">
                         <p:commandButton icon="pi pi-pencil"
                                          title="Editar"
                                          class="p-button-rounded p-button-text"
-                                         actionListener="#{recursoJsfController.seleccionarRecurso(recurso)}"
                                          update=":formRecurso"
-                                         oncomplete="PF('dlgRecurso').show()" />
-
+                                         actionListener="#{recursoJsf.prepararEdicion(r)}"
+                                         oncomplete="PF('dlgRecurso').show()"/>
                         <p:commandButton icon="pi pi-trash"
                                          title="Eliminar"
                                          class="p-button-rounded p-button-danger p-button-text ml-2"
-                                         onclick="PF('confirmEliminar').show()"
+                                         onclick="PF('confirmEliminar').show();"
                                          process="@this">
-                            <f:setPropertyActionListener target="#{recursoJsfController.idRecurso}" value="#{recurso.idRecurso}" />
+                            <f:setPropertyActionListener target="#{recursoJsf.idRecurso}" value="#{r.idRecurso}"/>
                         </p:commandButton>
                     </p:column>
 
@@ -116,63 +108,58 @@
             </div>
         </h:form>
 
-        <!-- Diálogo para nuevo/editar recurso -->
+        <!-- Dialogo -->
         <p:dialog header="Recurso" widgetVar="dlgRecurso" modal="true" resizable="false" width="500">
             <h:form id="formRecurso">
                 <div class="p-3">
                     <div class="field mb-3">
-                        <label class="font-semibold block mb-2" for="nombre">Nombre del Recurso</label>
-                        <p:inputText id="nombre" value="#{recursoJsfController.nuevoRecurso.resourceName}" required="true" styleClass="w-full" />
+                        <label class="font-semibold block mb-2">Nombre</label>
+                        <p:inputText value="#{recursoJsf.nombreRecurso}" required="true" styleClass="w-full"/>
                     </div>
 
                     <div class="field mb-3">
-                        <label class="font-semibold block mb-2" for="categoria">Categoría</label>
-                        <h:selectOneMenu id="categoria" value="#{recursoJsfController.nuevoRecurso.category}" required="true" styleClass="w-full">
-                            <f:selectItems value="#{recursoJsfController.categorias}" var="cat" itemValue="#{cat}" itemLabel="#{cat.name()}" />
+                        <label class="font-semibold block mb-2">Categoría</label>
+                        <h:selectOneMenu value="#{recursoJsf.categoria}" styleClass="w-full">
+                            <f:selectItems value="#{recursoJsf.categoriasDisponibles}" var="c" itemValue="#{c}" itemLabel="#{c.name()}"/>
                         </h:selectOneMenu>
                     </div>
 
-                    <div class="field mb-3">
-                        <label class="font-semibold block mb-2" for="stock">Stock</label>
-                        <p:inputNumber id="stock" value="#{recursoJsfController.nuevoRecurso.stock}" required="true" styleClass="w-full" />
-                    </div>
-
-                    <div class="field mb-3">
-                        <label class="font-semibold block mb-2" for="precio">Precio de Alquiler</label>
-                        <p:inputNumber id="precio"
-                                       value="#{recursoJsfController.nuevoRecurso.rentalPrice}"
-                                       required="true"
-                                       minValue="0"
-                                       maxValue="10000"
-                                       maxFractionDigits="2"
-                                       converterMessage="Ingrese un número válido"
-                                       requiredMessage="El precio es obligatorio"
-                                       mode="currency"
-                                       currencySymbol="$"
-                                       styleClass="w-full" />
+                    <div class="grid">
+                        <div class="col-6">
+                            <div class="field mb-3">
+                                <label class="font-semibold block mb-2">Stock</label>
+                                <p:inputNumber value="#{recursoJsf.stock}" styleClass="w-full"/>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="field mb-3">
+                                <label class="font-semibold block mb-2">Precio</label>
+                                <p:inputNumber value="#{recursoJsf.precioAlquiler}" styleClass="w-full"/>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="flex justify-content-end gap-2 pt-3">
-                        <p:commandButton value="Cancelar" type="button" class="p-button-secondary" onclick="PF('dlgRecurso').hide()" />
+                        <p:commandButton value="Cancelar" type="button" class="p-button-secondary" onclick="PF('dlgRecurso').hide()"/>
                         <p:commandButton value="Guardar"
-                                         actionListener="#{recursoJsfController.guardarOActualizar}"
+                                         actionListener="#{recursoJsf.guardar}"
                                          update=":formRecursos :formRecurso"
                                          class="p-button-success"
-                                         oncomplete="PF('dlgRecurso').hide()" />
+                                         oncomplete="PF('dlgRecurso').hide()"/>
                     </div>
                 </div>
             </h:form>
         </p:dialog>
 
-        <!-- Confirmación para eliminar recurso -->
+        <!-- Confirmación de eliminar -->
         <p:confirmDialog widgetVar="confirmEliminar" header="Confirmación" message="¿Desea eliminar este recurso?"
                          severity="warn">
-            <p:commandButton value="Sí" actionListener="#{recursoJsfController.eliminarRecurso}"
+            <p:commandButton value="Sí" actionListener="#{recursoJsf.eliminar}"
                              update=":formRecursos" oncomplete="PF('confirmEliminar').hide()"
-                             class="p-button-danger" />
-            <p:commandButton value="No" onclick="PF('confirmEliminar').hide()" type="button" class="p-button-secondary" />
+                             class="p-button-danger"/>
+            <p:commandButton value="No" onclick="PF('confirmEliminar').hide()" type="button" class="p-button-secondary"/>
         </p:confirmDialog>
-
     </div>
+
 </h:body>
 </html>

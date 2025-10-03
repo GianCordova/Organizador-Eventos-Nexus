@@ -24,7 +24,7 @@ public interface EventoMapper {
     @Mapping(source = "duracion", target = "duracion")
     @Mapping(source = "tipoEvento", target = "tipoEvento", qualifiedByName = "stringToTipoEvento")
     @Mapping(source = "costoEvento", target = "costoEvento")
-    @Mapping(source = "usuario.idUsuario", target = "idUsuario")
+    @Mapping(source = "idUsuario.idUsuario", target = "idUsuario")
     EventoDto toDto(EventoEntity entity);
 
     // Mapea lista de entidades a lista de DTOs
@@ -45,6 +45,6 @@ public interface EventoMapper {
     @Mapping(source = "duracion", target = "duracion")
     @Mapping(source = "tipoEvento", target = "tipoEvento", qualifiedByName = "stringToTipoEvento")
     @Mapping(source = "costoEvento", target = "costoEvento")
-    @Mapping(source = "idUsuario", target = "usuario.idUsuario")
+    @Mapping(source = "idUsuario", target = "idUsuario.idUsuario")
     void modificarEntityFromDto(ModEventoDto mod, @MappingTarget EventoEntity entity);
 }

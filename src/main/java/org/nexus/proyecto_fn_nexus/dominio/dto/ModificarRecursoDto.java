@@ -8,19 +8,17 @@ import org.nexus.proyecto_fn_nexus.dominio.CategoriaRecurso;
 import java.math.BigDecimal;
 
 public record ModificarRecursoDto (
+
         @NotNull(message = "El titulo nuevo no puede estar vacio")
-        String resourceName,
+        String nombreRecurso,
 
-        CategoriaRecurso category,
-        @Min(value = 0, message = "El stock no puede ser menor a 0")
+        @NotNull(message = "La categoría es obligatoria")
+        CategoriaRecurso categoria,
 
-        @NotNull(message = "El stock no puede ser nulo")
-        @Min(value = 0, message = "El stock no puede ser menor a 0")
+        @DecimalMin(value = "0", message = "El stock no puede ser negativo")
         Integer stock,
 
-        @NotNull(message = "El precio de alquiler no puede ser nulo")
+        @NotNull(message = "El precio de alquiler es obligatorio")
         @DecimalMin(value = "0.0", message = "El precio de alquiler no puede ser negativo")
-        BigDecimal rentalPrice
-
-){
-}
+        BigDecimal precioAlquiler
+) {}

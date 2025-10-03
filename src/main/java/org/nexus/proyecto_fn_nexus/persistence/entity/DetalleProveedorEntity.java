@@ -1,8 +1,14 @@
 package org.nexus.proyecto_fn_nexus.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
-
 import java.math.BigDecimal;
 
 @Entity
@@ -15,22 +21,17 @@ public class DetalleProveedorEntity {
     @Column(name = "idDetalleProveedor")
     private Long idDetalleProveedor;
 
-    // Relación con evento (organizador)
     @ManyToOne
     @JoinColumn(name = "idEvento", nullable = false)
-    private InvitadoEntity evento;
+    private EventoEntity evento;
 
-    // Relación con proveedor (organizador)
     @ManyToOne
     @JoinColumn(name = "idProveedor", nullable = false)
     private ProveedorEntity proveedor;
 
-
     @Column(name = "costo", precision = 10, scale = 2, nullable = false)
     private BigDecimal costo;
-
 
     @Column(name = "observaciones", length = 100, nullable = false)
     private String observaciones;
 }
-

@@ -1,6 +1,13 @@
 package org.nexus.proyecto_fn_nexus.persistence.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,12 +18,12 @@ import org.nexus.proyecto_fn_nexus.dominio.Rol;
 @AllArgsConstructor
 @Entity
 @Table(name = "Usuarios")
-    public class UsuarioEntity {
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario")
-    private Integer idUsuario;
+    private Long idUsuario;
 
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
@@ -33,5 +40,4 @@ import org.nexus.proyecto_fn_nexus.dominio.Rol;
     @Enumerated(EnumType.STRING)
     @Column(name = "rol", nullable = false)
     private Rol rol;
-
 }

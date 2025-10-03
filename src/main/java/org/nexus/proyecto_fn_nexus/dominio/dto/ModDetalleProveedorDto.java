@@ -5,7 +5,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
-public record ModDetalleProveedorDto (
+public record ModDetalleProveedorDto(
 
         @NotNull(message = "El id del evento es obligatorio")
         Long idEvento,
@@ -13,6 +13,7 @@ public record ModDetalleProveedorDto (
         @NotNull(message = "El id del proveedor es obligatorio")
         Long idProveedor,
 
+        @NotNull(message = "El costo es obligatorio")
         @DecimalMin(value = "0.0", message = "El costo no puede ser negativo")
         BigDecimal costo,
 

@@ -3,7 +3,6 @@ package org.nexus.proyecto_fn_nexus.persistence;
 import org.nexus.proyecto_fn_nexus.dominio.dto.DetalleRecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.dto.ModDetalleRecursoDto;
 import org.nexus.proyecto_fn_nexus.dominio.exception.DetalleRecursoNoExisteException;
-import org.nexus.proyecto_fn_nexus.dominio.exception.DetalleRecursoYaExisteException;
 import org.nexus.proyecto_fn_nexus.persistence.entity.DetalleRecursoEntity;
 import org.nexus.proyecto_fn_nexus.persistence.mapper.DetalleRecursoMapper;
 import org.nexus.proyecto_fn_nexus.repository.DetalleRecursoRepository;
@@ -34,11 +33,6 @@ public class DetalleRecursoEntityRepository implements DetalleRecursoRepository 
 
     @Override
     public DetalleRecursoDto guardarDetalleRecurso(DetalleRecursoDto detalleRecursoDto) {
-        // Verificamos si el detalle de recurso ya existe en el sistema
-        if (this.CrudDetalleRecursoEntity.findDetalleRecursoEntitiesByCantidad(detalleRecursoDto.cantidad()) != null) {
-            throw new DetalleRecursoYaExisteException(detalleRecursoDto.toString());
-        }
-
         // Convertimos el DTO a una entidad
         DetalleRecursoEntity detalleRecursoEntity = this.detalleRecursoMapper.toEntity(detalleRecursoDto);
 
@@ -48,6 +42,7 @@ public class DetalleRecursoEntityRepository implements DetalleRecursoRepository 
         // Retornamos la entidad guardada como DTO
         return this.detalleRecursoMapper.toDto(detalleRecursoEntity);
     }
+
 
     @Override
     public DetalleRecursoDto modificarDetalleRecurso(Long idDetalleRecurso, ModDetalleRecursoDto modDetalleRecursoDto) {

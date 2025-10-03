@@ -42,7 +42,7 @@ public class DetalleRecursoController {
     )
     public ResponseEntity<DetalleRecursoDto> buscarPorId(
             @Parameter(description = "ID del detalle recurso", example = "10")
-            @PathVariable Integer idDetalleRecurso) {
+            @PathVariable Long idDetalleRecurso) {
         return ResponseEntity.ok(detalleRecursoService.buscarPorId(idDetalleRecurso));
     }
 

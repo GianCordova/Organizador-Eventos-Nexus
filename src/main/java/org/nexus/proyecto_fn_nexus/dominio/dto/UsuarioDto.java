@@ -21,9 +21,6 @@ public record UsuarioDto(
         @NotNull (message = "La contraseña es obligatoria")
         String password,
 
-        @NotNull(message = "El rol es obligatorio y porfavor unicamente poner cliente y administrador")
-        Rol rol // aqui esta si es cliente o es administrador
-
-
-) {
-}
+        @NotNull(message = "El rol es obligatorio")
+        Rol rol
+) {}

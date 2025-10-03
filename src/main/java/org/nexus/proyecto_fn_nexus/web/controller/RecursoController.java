@@ -41,7 +41,7 @@ public class RecursoController {
     )
     public ResponseEntity<RecursoDto> buscarPorId
             (@Parameter(description = "Identificador del recurso", example = "8")
-             @PathVariable Integer idRecurso) {
+             @PathVariable Long idRecurso) {
         return ResponseEntity.ok(this.recursoService.buscarPorId(idRecurso));
     }
 
@@ -51,12 +51,12 @@ public class RecursoController {
     }
 
     @PutMapping("{idRecurso}")
-    public ResponseEntity<RecursoDto> modificarRecurso(@PathVariable Integer idRecurso, @RequestBody ModificarRecursoDto modificarRecurso) {
+    public ResponseEntity<RecursoDto> modificarRecurso(@PathVariable Long idRecurso, @RequestBody ModificarRecursoDto modificarRecurso) {
         return ResponseEntity.ok(this.recursoService.modificarRecurso(idRecurso, modificarRecurso));
     }
 
     @DeleteMapping("{idRecurso}")
-    public ResponseEntity<Void> eliminarRecurso(@PathVariable Integer idRecurso) {
+    public ResponseEntity<Void> eliminarRecurso(@PathVariable Long idRecurso) {
         this.recursoService.eliminarRecurso(idRecurso);
         return ResponseEntity.ok().build();
     }

@@ -1,14 +1,14 @@
 package org.nexus.proyecto_fn_nexus.persistence.entity;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
-import org.nexus.proyecto_fn_nexus.dominio.Estado;
-import org.nexus.proyecto_fn_nexus.dominio.TipoEvento;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "DetalleRecursos")
@@ -20,21 +20,14 @@ public class DetalleRecursoEntity {
     @Column(name = "idDetalleRecurso")
     private Long idDetalleRecurso;
 
-    // Relación con evento (organizador)
     @ManyToOne
     @JoinColumn(name = "idEvento", nullable = false)
     private EventoEntity evento;
 
-    // Relación con recurso (organizador)
     @ManyToOne
     @JoinColumn(name = "idRecurso", nullable = false)
     private RecursoEntity recurso;
 
     @Column(nullable = false)
     private Integer cantidad;
-
-
-
-
-
 }

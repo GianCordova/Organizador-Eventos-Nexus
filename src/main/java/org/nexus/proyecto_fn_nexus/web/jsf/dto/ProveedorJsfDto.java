@@ -7,7 +7,6 @@ public class ProveedorJsfDto {
     private String servicio;
     private String contacto;
 
-    // Constructor
     public ProveedorJsfDto(Long idProveedor, String nombreProveedor, String servicio, String contacto) {
         this.idProveedor = idProveedor;
         this.nombreProveedor = nombreProveedor;
@@ -15,7 +14,6 @@ public class ProveedorJsfDto {
         this.contacto = contacto;
     }
 
-    // Getters convencionales para JSF
     public Long getIdProveedor() {
         return idProveedor;
     }
@@ -30,22 +28,5 @@ public class ProveedorJsfDto {
 
     public String getContacto() {
         return contacto;
-    }
-
-    // Setters convencionales para JSF (por si es necesario en tu implementación)
-    public void setIdProveedor(Long idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-
-    public void setNombreProveedor(String nombreProveedor) {
-        this.nombreProveedor = nombreProveedor;
-    }
-
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
-    }
-
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
     }
 }

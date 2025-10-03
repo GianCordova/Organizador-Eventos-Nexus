@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-09-24T11:25:25-0600",
-    comments = "version: 1.6.3, compiler: javac, environment: Java 21 (Oracle Corporation)"
+    date = "2025-10-02T16:34:34-0600",
+    comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.5 (Oracle Corporation)"
 )
 @Component
 public class UsuarioMapperImpl implements UsuarioMapper {
@@ -37,9 +37,7 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         if ( usuario.getRol() != null ) {
             rol = RolMapper.stringToRol( usuario.getRol().name() );
         }
-        if ( usuario.getIdUsuario() != null ) {
-            idUsuario = usuario.getIdUsuario().longValue();
-        }
+        idUsuario = usuario.getIdUsuario();
 
         UsuarioDto usuarioDto = new UsuarioDto( idUsuario, nombre, apellido, email, password, rol );
 
@@ -75,9 +73,7 @@ public class UsuarioMapperImpl implements UsuarioMapper {
         usuarioEntity.setApellido( dto.apellido() );
         usuarioEntity.setEmail( dto.email() );
         usuarioEntity.setPassword( dto.password() );
-        if ( dto.idUsuario() != null ) {
-            usuarioEntity.setIdUsuario( dto.idUsuario().intValue() );
-        }
+        usuarioEntity.setIdUsuario( dto.idUsuario() );
 
         return usuarioEntity;
     }

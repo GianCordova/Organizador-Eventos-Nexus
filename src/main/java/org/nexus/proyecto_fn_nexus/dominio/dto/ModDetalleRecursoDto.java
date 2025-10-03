@@ -1,9 +1,9 @@
 package org.nexus.proyecto_fn_nexus.dominio.dto;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Min;
 
-public record ModDetalleRecursoDto (
+public record ModDetalleRecursoDto(
 
         @NotNull(message = "El id del evento es obligatorio")
         Long idEvento,

@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface InvitadoRepository {
     List<InvitadoDto> obtenerTodo();
-    InvitadoDto buscarPorId(Integer idInvitado);
+    InvitadoDto buscarPorId(Long idInvitado);
     InvitadoDto guardarInvitado(InvitadoDto invitadoDto);
-    InvitadoDto modificarInvitado(Integer idInvitado, ModInvitadoDto modInvitado);
-    void eliminarInvitado(Integer idInvitado);
+    InvitadoDto modificarInvitado(Long idInvitado, ModInvitadoDto modInvitado);
+    void eliminarInvitado(Long idInvitado);
 }

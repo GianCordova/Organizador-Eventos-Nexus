@@ -19,7 +19,7 @@ public class InvitadoService {
         return this.invitadoRepository.obtenerTodo();
     }
 
-    public InvitadoDto buscarPorId(Integer  idInvitado) {
+    public InvitadoDto buscarPorId(Long  idInvitado) {
         return this.invitadoRepository.buscarPorId(idInvitado);
     }
 
@@ -27,11 +27,11 @@ public class InvitadoService {
         return this.invitadoRepository.guardarInvitado(invitadoDto);
     }
 
-    public InvitadoDto modificarInvitado(Integer  idInvitado, ModInvitadoDto modInvitado) {
+    public InvitadoDto modificarInvitado(Long  idInvitado, ModInvitadoDto modInvitado) {
         return this.invitadoRepository.modificarInvitado(idInvitado, modInvitado);
     }
 
-    public void eliminarInvitado(Integer  idInvitado) {
+    public void eliminarInvitado(Long  idInvitado) {
         this.invitadoRepository.eliminarInvitado(idInvitado);
     }
 }
